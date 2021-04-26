@@ -1,0 +1,5 @@
+*.a
+*.d
+*.o
+bin/unit_converter
+bin/test/unit_converter_test
