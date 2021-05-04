@@ -1,8 +1,8 @@
 #pragma once
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 typedef struct _unit {
     char* key;
@@ -17,3 +17,4 @@ typedef struct _category {
 void get_word(int p1, int p2, category* arr_cat, char* buf);
 unit* get_unit(char* buf, int i, int k);
 category* get_category(FILE* file);
+int line_counter(FILE* file);

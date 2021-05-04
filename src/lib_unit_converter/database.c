@@ -36,7 +36,7 @@ unit* get_unit(char* buf, int i, int k)
     return uniti;
 }
 
-category *get_category(FILE* file)
+category* get_category(FILE* file)
 {
     category* arr_cat = malloc(sizeof(category));
     if (arr_cat == NULL) {
@@ -63,4 +63,23 @@ category *get_category(FILE* file)
     }
     arr_cat->units = get_unit(buf, p1, k);
     return arr_cat;
+}
+
+int line_counter(FILE* file)
+{
+    int counter = 0;
+    char ch, pre = EOF;
+    while ((ch = fgetc(file)) != EOF) {
+        pre = ch;
+        if (ch == '\n') {
+            counter++;
+        }
+    }
+    if (pre == EOF) {
+        printf("Файл пустой!\n");
+    } else if (pre != '\n') {
+        counter++;
+    }
+    rewind(file);
+    return counter;
 }
