@@ -14,7 +14,7 @@ typedef struct _category {
     unit* units;
 } category;
 
-void get_word(int p1, int p2, category* arr_cat, char* buf);
+void get_word(int i, category* arr_categors, char* buf);
 unit* get_unit(char* buf, int i, int k);
 category* get_category(FILE* file);
 int line_counter(FILE* file);

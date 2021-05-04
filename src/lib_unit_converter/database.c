@@ -1,10 +1,10 @@
 #include "unit_converter.h"
 
-void get_word(int p1, int p2, category* arr_cat, char* buf)
+void get_word(int i, category* arr_categors, char* buf)
 {
-    arr_cat->key = malloc(sizeof(char) * (p2 - p1));
-    for (; p1 < p2; p1++) {
-        arr_cat->key[p1] = buf[p1];
+    arr_categors->key = malloc(sizeof(char) * i);
+    for (int j = 0; j < i; j++) {
+        arr_categors->key[j] = buf[j];
     }
 }
 
@@ -38,30 +38,30 @@ unit* get_unit(char* buf, int i, int k)
 
 category* get_category(FILE* file)
 {
-    category* arr_cat = malloc(sizeof(category));
-    if (arr_cat == NULL) {
+    category* arr_categors = malloc(sizeof(category));
+    if (arr_categors == NULL) {
         return NULL;
     }
     char buf[1024];
     fgets(buf, 1024, file);
-    int i = 0, p1 = 0, k = 1;
+    int i = 0, tmp_i, k = 1;
     while (buf[i] != ' ') {
         i++;
     }
-    get_word(p1, i, arr_cat, buf);
+    get_word(i, arr_categors, buf);
 
     while (buf[i] != '(') {
         i++;
     }
     i++;
-    p1 = i;
+    tmp_i = i;
     for (; buf[i] != ')'; i++) {
         if (buf[i] == ',') {
             k++;
         }
     }
-    arr_cat->units = get_unit(buf, p1, k);
-    return arr_cat;
+    arr_categors->units = get_unit(buf, tmp_i, k);
+    return arr_categors;
 }
 
 int line_counter(FILE* file)
