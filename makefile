@@ -4,6 +4,7 @@ APP_TEST_NAME = unit_converter_test
 
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -MP -MMD
+GDB = -g -O0
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -33,13 +34,13 @@ all: $(APP_PATH)
 -include $(DEPS)
 
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	gcc $(CFLAGS) $(CPPFLAGS) $^ -o $@ -lm
+	gcc $(CFLAGS) $(GDB) $(CPPFLAGS) $^ -o $@ -lm
 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
-	gcc -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+	gcc -c $(CFLAGS) $(GDB) $(CPPFLAGS) $< -o $@
 
 test: $(TEST_PATH)
 
