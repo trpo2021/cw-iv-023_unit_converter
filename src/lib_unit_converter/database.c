@@ -44,12 +44,11 @@ category* get_category(FILE* file)
     }
     char buf[1024];
     fgets(buf, 1024, file);
-    int i = 0, p1 = 0, p2 = 0, k = 1;
+    int i = 0, p1 = 0, k = 1;
     while (buf[i] != ' ') {
         i++;
-        p2++;
     }
-    get_word(p1, p2, arr_cat, buf);
+    get_word(p1, i, arr_cat, buf);
 
     while (buf[i] != '(') {
         i++;
