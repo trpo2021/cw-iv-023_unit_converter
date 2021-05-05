@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #define SIZE_BUF 1024
 
-
 typedef struct _unit {
     char* key;
     double value;

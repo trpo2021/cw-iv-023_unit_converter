@@ -9,8 +9,7 @@ int main()
         return 1;
     }
     int counter_line = line_counter(file);
-    if (counter_line == 0)
-    {
+    if (counter_line == 0) {
         printf("EROR file empty\n");
         return 1;
     }
