@@ -75,7 +75,7 @@ int line_counter(FILE* file)
         }
     }
     if (pre == EOF) {
-        printf("Файл пустой!\n");
+        return 0;
     } else if (pre != '\n') {
         counter++;
     }
