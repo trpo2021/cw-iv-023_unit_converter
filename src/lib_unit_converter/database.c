@@ -73,11 +73,24 @@ category* get_category(FILE* file)
             k++;
         }
     }
+    arr_categors->units_counter = k;
     arr_categors->units = get_unit(buf, tmp_i, k);
     if (arr_categors->units == NULL) {
         return NULL;
     }
     free(buf);
+    return arr_categors;
+}
+
+category** database_create(FILE* file, int counter_line)
+{
+    category** arr_categors = malloc(sizeof(category) * counter_line);
+    for (int i = 0; i < counter_line; i++) {
+        arr_categors[i] = get_category(file);
+        if (arr_categors[i] == NULL) {
+            printf("EROR: Category format №%d is not correct\n", (i + 1));
+        }
+    }
     return arr_categors;
 }
 
