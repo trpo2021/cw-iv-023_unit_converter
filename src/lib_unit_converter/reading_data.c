@@ -1,5 +1,15 @@
 #include "unit_converter.h"
 
+double get_value(char input_str[])
+{
+    int i = 0;
+    while (isdigit(input_str[i]) == 0) {
+        i++;
+    }
+    double value = atof(&input_str[i]);
+    return value;
+}
+
 int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
 {
     int i = 0;
