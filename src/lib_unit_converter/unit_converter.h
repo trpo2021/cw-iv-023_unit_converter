@@ -8,14 +8,14 @@
 #define SIZE_INPUT_STR 256
 
 typedef struct _unit {
-    double value;
     char* key;
+    double value;
 } unit;
 
 typedef struct _category {
+    char* key;
     unit* units;
     int units_counter;
-    char* key;
 } category;
 
 category** database_create(FILE* file, int counter_line);
