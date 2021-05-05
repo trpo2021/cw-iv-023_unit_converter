@@ -37,3 +37,24 @@ CTEST(get_word, no_word)
     real->key = get_word(i, real, buf);
     ASSERT_NULL(real->key);
 }
+
+CTEST(get_unit, no_units)
+{
+    char buf[] = " ";
+    int i = 0, k = 0;
+    unit* real = get_unit(buf, i, k);
+    ASSERT_NULL(real);
+}
+
+CTEST(get_unit, two_units)
+{
+    char buf[] = "(mkg - 0.000000001, mg - 0.000001)";
+    int i = 1, k = 2;
+    unit* real = NULL;
+    real = get_unit(buf, i, k);
+    unit expect[] = {{"mkg", 0.000000001}, {"mg", 0.000001}};
+    ASSERT_STR(expect[0].key, real[0].key);
+    ASSERT_STR(expect[1].key, real[1].key);
+    ASSERT_DBL_NEAR_TOL(expect[0].value, real[0].value, 0);
+    ASSERT_DBL_NEAR_TOL(expect[1].value, real[1].value, 0);
+}
