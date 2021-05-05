@@ -13,13 +13,22 @@ int main()
         printf("EROR file empty\n");
         return 1;
     }
-    category** arr_categors = malloc(sizeof(category) * counter_line);
-    for (int i = 0; i < counter_line; i++) {
-        arr_categors[i] = get_category(file);
-        if (arr_categors[i] == NULL) {
-            printf("EROR: Category format №%d is not correct\n", (i + 1));
-        }
-    }
+    category** arr_categors = database_create(file, counter_line);
     fclose(file);
+
+    char* input_str = NULL;
+    input_str = malloc(sizeof(char) * SIZE_INPUT_STR);
+    fgets(input_str, SIZE_INPUT_STR, stdin);
+
+    int index = get_index_cat(input_str, arr_categors, counter_line);
+    double factor_from = get_factor(input_str, index, 1, arr_categors);
+    printf("factor_from = %lf\n", factor_from);
+    // сделано для проверки и для того чтобы main компилировался, позже удалим.
+    double factor_in = get_factor(input_str, index, 2, arr_categors);
+    printf("factor_in = %lf\n", factor_in);
+    // сделано для проверки и для того чтобы main компилировался, позже удалим.
+    double value = get_value(input_str);
+    printf("value = %lf\n", value);
+    // сделано для проверки и для того чтобы main компилировался, позже удалим.
     return 0;
 }
