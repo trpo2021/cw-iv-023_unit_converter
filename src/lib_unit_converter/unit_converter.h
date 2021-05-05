@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define SIZE_BUF 1024
+
 
 typedef struct _unit {
     char* key;
@@ -14,7 +16,7 @@ typedef struct _category {
     unit* units;
 } category;
 
-void get_word(int i, category* arr_categors, char* buf);
+void* get_word(int i, category* arr_categors, char* buf);
 unit* get_unit(char* buf, int i, int k);
 category* get_category(FILE* file);
 int line_counter(FILE* file);
