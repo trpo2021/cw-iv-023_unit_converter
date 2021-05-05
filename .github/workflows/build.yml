@@ -16,3 +16,5 @@ jobs:
         run: make
       - name: Build test
         run: make test
+      - name: Run test
+        run: ./bin/test/unit_converter_test
