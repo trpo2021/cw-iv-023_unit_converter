@@ -73,6 +73,7 @@ category* get_category(FILE* file)
             k++;
         }
     }
+    arr_categors->units_counter = k;
     arr_categors->units = get_unit(buf, tmp_i, k);
     if (arr_categors->units == NULL) {
         return NULL;
@@ -81,13 +82,8 @@ category* get_category(FILE* file)
     return arr_categors;
 }
 
-category** database_create(FILE* file)
+category** database_create(FILE* file, int counter_line)
 {
-    int counter_line = line_counter(file);
-    if (counter_line == 0) {
-        printf("EROR file empty\n");
-        return NULL;
-    }
     category** arr_categors = malloc(sizeof(category) * counter_line);
     for (int i = 0; i < counter_line; i++) {
         arr_categors[i] = get_category(file);
