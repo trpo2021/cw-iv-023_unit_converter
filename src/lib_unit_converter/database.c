@@ -17,6 +17,9 @@ void* get_word(int i, category* arr_categors, char* buf)
 
 unit* get_unit(char* buf, int i, int k)
 {
+    if (k == 0) {
+        return NULL;
+    }
     unit* uniti = malloc(sizeof(unit) * k);
     if (uniti == NULL) {
         return NULL;
@@ -49,7 +52,7 @@ category* get_category(FILE* file)
     if (arr_categors == NULL) {
         return NULL;
     }
-    char *buf = malloc(sizeof(char) * SIZE_BUF);
+    char* buf = malloc(sizeof(char) * SIZE_BUF);
     fgets(buf, SIZE_BUF, file);
     int i = 0, tmp_i, k = 1;
     while (isalpha(buf[i]) != 0) {
