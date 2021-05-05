@@ -58,3 +58,19 @@ CTEST(get_unit, two_units)
     ASSERT_DBL_NEAR_TOL(expect[0].value, real[0].value, 0);
     ASSERT_DBL_NEAR_TOL(expect[1].value, real[1].value, 0);
 }
+
+CTEST(get_category, empty_file)
+{
+    FILE* file = fopen("test/files_for_tests/empty_file.txt", "r");
+    category* real = get_category(file);
+    fclose(file);
+    ASSERT_NULL(real);
+}
+
+CTEST(get_category, no_empty_file)
+{
+    FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
+    category* real = get_category(file);
+    fclose(file);
+    ASSERT_NOT_NULL(real);
+}
