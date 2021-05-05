@@ -3,7 +3,7 @@ LIB_NAME = lib_unit_converter
 APP_TEST_NAME = unit_converter_test
 
 CFLAGS = -Wall -Wextra -Werror
-CPPFLAGS = -I src -MP -MMD
+CPPFLAGS = -I src -I thirdparty -MP -MMD
 GDB = -g -O0
 
 BIN_DIR = bin
