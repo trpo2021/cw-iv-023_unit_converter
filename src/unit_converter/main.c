@@ -17,7 +17,7 @@ int main()
     fclose(file);
 
     char* input_str = NULL;
-    input_str = malloc(sizeof(char) * SIZE_INPUT_STR);
+    input_str = calloc(SIZE_INPUT_STR, sizeof(char));
     fgets(input_str, SIZE_INPUT_STR, stdin);
 
     int index = get_index_cat(input_str, arr_categors, counter_line);

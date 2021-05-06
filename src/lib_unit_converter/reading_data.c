@@ -29,7 +29,7 @@ double get_factor(char* input_str, int index, int number, category** arr_cat)
     while (isalpha(input_str[i]) != 0) {
         i++;
     }
-    char* str_tmp = malloc(sizeof(char) * (i - j));
+    char* str_tmp = calloc(i - j, sizeof(char));
     for (int t = 0; j < i; t++, j++) {
         str_tmp[t] = input_str[j];
     }
@@ -38,8 +38,8 @@ double get_factor(char* input_str, int index, int number, category** arr_cat)
             break;
         }
     }
-    double un_from_factor = arr_cat[index]->units[i].value;
-    return un_from_factor;
+    double unit_factor = arr_cat[index]->units[i].value;
+    return unit_factor;
 }
 
 int get_index_cat(char* input_str, category** arr_cat, int counter_cat)

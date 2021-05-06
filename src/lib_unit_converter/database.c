@@ -5,7 +5,7 @@ void* get_word(int i, category* arr_categors, char* buf)
     if (i == 0) {
         return NULL;
     }
-    arr_categors->key = malloc(sizeof(char) * i);
+    arr_categors->key = calloc(i, sizeof(char));
     if (arr_categors->key == NULL) {
         return NULL;
     }
@@ -20,7 +20,7 @@ unit* get_unit(char* buf, int i, int k)
     if (k == 0) {
         return NULL;
     }
-    unit* uniti = malloc(sizeof(unit) * k);
+    unit* uniti = calloc(k, sizeof(unit));
     if (uniti == NULL) {
         return NULL;
     }
@@ -30,7 +30,7 @@ unit* get_unit(char* buf, int i, int k)
         while (isalpha(buf[i]) != 0) {
             i++;
         }
-        uniti[p].key = malloc(sizeof(char) * (i - j));
+        uniti[p].key = calloc(i - j, sizeof(char));
         for (t = 0; j < i; j++, t++) {
             uniti[p].key[t] = buf[j];
         }
@@ -48,11 +48,11 @@ unit* get_unit(char* buf, int i, int k)
 
 category* get_category(FILE* file)
 {
-    category* arr_categors = malloc(sizeof(category));
+    category* arr_categors = calloc(1, sizeof(category));
     if (arr_categors == NULL) {
         return NULL;
     }
-    char* buf = malloc(sizeof(char) * SIZE_BUF);
+    char* buf = calloc(SIZE_BUF, sizeof(char));
     fgets(buf, SIZE_BUF, file);
     int i = 0, tmp_i, k = 1;
     while (isalpha(buf[i]) != 0) {
@@ -84,7 +84,7 @@ category* get_category(FILE* file)
 
 category** database_create(FILE* file, int counter_line)
 {
-    category** arr_categors = malloc(sizeof(category) * counter_line);
+    category** arr_categors = calloc(counter_line, sizeof(category));
     for (int i = 0; i < counter_line; i++) {
         arr_categors[i] = get_category(file);
         if (arr_categors[i] == NULL) {
