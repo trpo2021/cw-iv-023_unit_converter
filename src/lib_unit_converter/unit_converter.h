@@ -26,3 +26,4 @@ void* get_word(int i, category* arr_categors, char* buf);
 unit* get_unit(char* buf, int i, int k);
 category* get_category(FILE* file);
 int line_counter(FILE* file);
+double convert_speed(double factor_from, double factor_in, double value);
