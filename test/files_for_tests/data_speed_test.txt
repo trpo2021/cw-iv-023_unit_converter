@@ -1,0 +1,1 @@
+Speed = (kms - 0.001, ms - 1, kmh - 3.6, dms - 10, cms - 100 mh - 3600, dmh - 36000, cmh - 360000)
