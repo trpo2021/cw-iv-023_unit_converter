@@ -50,10 +50,20 @@ int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
         str_tmp[i] = input_str[i];
         i++;
     }
+    tolower_str(str_tmp);
     for (i = 0; i < counter_cat; i++) {
+        tolower_str(arr_cat[i]->key);
         if (strcmp(str_tmp, arr_cat[i]->key) == 0) {
             return i;
         }
     }
     return -1;
+}
+
+void tolower_str(char* str)
+{
+    int size = strlen(str);
+    for (int i = 0; i < size; i++) {
+        str[i] = tolower(str[i]);
+    }
 }
