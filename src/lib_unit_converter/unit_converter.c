@@ -17,3 +17,8 @@ double convert_weight(double factor_from, double factor_in, double value)
 {
     return value * (factor_from / factor_in);
 }
+
+double convert_time(double factor_from, double factor_in, double value)
+{
+    return value * (factor_from / factor_in);
+}

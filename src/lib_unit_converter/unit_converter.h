@@ -31,3 +31,4 @@ double convert_length(double factor_from, double factor_in, double value);
 double convert_speed(double factor_from, double factor_in, double value);
 double convert_weight(double factor_from, double factor_in, double value);
 void tolower_str(char* str);
+double convert_time(double factor_from, double factor_in, double value);
