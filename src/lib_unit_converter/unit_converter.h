@@ -28,3 +28,4 @@ category* get_category(FILE* file);
 int line_counter(FILE* file);
 double convert_length(double factor_from, double factor_in, double value);
 double convert_speed(double factor_from, double factor_in, double value);
+void tolower_str(char* str);
