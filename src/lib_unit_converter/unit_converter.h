@@ -6,6 +6,7 @@
 #include <string.h>
 #define SIZE_BUF 1024
 #define SIZE_INPUT_STR 256
+#define TOLL 1e-6
 
 typedef struct _unit {
     char* key;
