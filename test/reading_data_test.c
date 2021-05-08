@@ -71,3 +71,25 @@ CTEST(get_value, double_type)
     double real = get_value(input_str);
     ASSERT_DBL_NEAR_TOL(exp, real, 0);
 }
+
+CTEST(get_factor, first_factor)
+{
+    char input_str[] = "length(nm, mkm, 10)";
+    FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
+    category** arr_categors = database_create(file, 3);
+    fclose(file);
+    double exp = 0.000000001;
+    double real = get_factor(input_str, 1, 1, arr_categors);
+    ASSERT_DBL_NEAR_TOL(exp, real, 0);
+}
+
+CTEST(get_factor, second_factor)
+{
+    char input_str[] = "length(nm, mkm, 10)";
+    FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
+    category** arr_categors = database_create(file, 3);
+    fclose(file);
+    double exp = 0.000001;
+    double real = get_factor(input_str, 1, 2, arr_categors);
+    ASSERT_DBL_NEAR_TOL(exp, real, 0);
+}
