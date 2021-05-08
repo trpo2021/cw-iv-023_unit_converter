@@ -55,3 +55,19 @@ CTEST(get_index_cat, register_check)
     int real = get_index_cat(input_str, arr_categors, 3);
     ASSERT_EQUAL(exp, real);
 }
+
+CTEST(get_value, integer_type)
+{
+    char input_str[] = "length(cm, m, 10)";
+    double exp = 10;
+    double real = get_value(input_str);
+    ASSERT_DBL_NEAR_TOL(exp, real, 0);
+}
+
+CTEST(get_value, double_type)
+{
+    char input_str[] = "length(cm, m, 10.512)";
+    double exp = 10.512;
+    double real = get_value(input_str);
+    ASSERT_DBL_NEAR_TOL(exp, real, 0);
+}
