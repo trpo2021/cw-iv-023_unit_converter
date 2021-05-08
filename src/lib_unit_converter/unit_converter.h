@@ -6,6 +6,7 @@
 #include <string.h>
 #define SIZE_BUF 1024
 #define SIZE_INPUT_STR 256
+#define TOLL 1e-6
 
 typedef struct _unit {
     char* key;
@@ -28,4 +29,5 @@ category* get_category(FILE* file);
 int line_counter(FILE* file);
 double convert_length(double factor_from, double factor_in, double value);
 double convert_speed(double factor_from, double factor_in, double value);
+double convert_weight(double factor_from, double factor_in, double value);
 void tolower_str(char* str);
