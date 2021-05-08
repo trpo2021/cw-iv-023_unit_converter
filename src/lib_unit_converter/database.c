@@ -26,6 +26,9 @@ unit* get_unit(char* buf, int i, int k)
     }
     int j, p = 0, t;
     while (p < k) {
+        while (isalpha(buf[i]) == 0) {
+            i++;
+        }
         j = i;
         while (isalpha(buf[i]) != 0) {
             i++;
@@ -38,9 +41,6 @@ unit* get_unit(char* buf, int i, int k)
             i++;
         }
         uniti[p].value = atof(&buf[i]);
-        while (isalpha(buf[i]) == 0) {
-            i++;
-        }
         p++;
     }
     return uniti;
