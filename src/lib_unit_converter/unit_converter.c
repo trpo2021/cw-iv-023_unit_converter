@@ -12,3 +12,8 @@ double convert_speed(double factor_from, double factor_in, double value)
 
     return converted_value;
 }
+
+double convert_time(double factor_from, double factor_in, double value)
+{
+    return value * (factor_from / factor_in);
+}
