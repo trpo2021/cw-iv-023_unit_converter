@@ -27,7 +27,7 @@ int main()
     printf("factor_from = %.10lf\n", factor_from);
     // сделано для проверки и для того чтобы main компилировался, позже удалим.
     double factor_in;
-    factor_from = get_factor(input_str, index, second_factor, arr_categors);
+    factor_in = get_factor(input_str, index, second_factor, arr_categors);
     printf("factor_in = %.10lf\n", factor_in);
     // сделано для проверки и для того чтобы main компилировался, позже удалим.
     double value = get_value(input_str);
