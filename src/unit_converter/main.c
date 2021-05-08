@@ -47,7 +47,8 @@ int main()
                convert_speed(factor_from, factor_in, value));
         break;
     case 3:
-        printf("converted value = %lf\n", convert_time(factor_from, factor_in, value));
+        printf("converted value = %lf\n",
+               convert_time(factor_from, factor_in, value));
         break;
     }
     return 0;
