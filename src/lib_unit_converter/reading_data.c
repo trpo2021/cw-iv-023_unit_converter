@@ -42,6 +42,14 @@ double get_factor(char* input_str, int index, int number, category** arr_cat)
     return unit_factor;
 }
 
+static void tolower_str(char* str)
+{
+    int size = strlen(str);
+    for (int i = 0; i < size; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
 int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
 {
     int i = 0;
@@ -58,12 +66,4 @@ int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
         }
     }
     return -1;
-}
-
-void tolower_str(char* str)
-{
-    int size = strlen(str);
-    for (int i = 0; i < size; i++) {
-        str[i] = tolower(str[i]);
-    }
 }

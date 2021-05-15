@@ -1,6 +1,6 @@
 #include "unit_converter.h"
 
-void* get_word(int i, category* arr_categors, char* buf)
+static void* get_word(int i, category* arr_categors, char* buf)
 {
     if (i == 0) {
         return NULL;
@@ -15,7 +15,7 @@ void* get_word(int i, category* arr_categors, char* buf)
     return arr_categors->key;
 }
 
-unit* get_unit(char* buf, int i, int k)
+static unit* get_unit(char* buf, int i, int k)
 {
     if (k == 0) {
         return NULL;
@@ -46,7 +46,7 @@ unit* get_unit(char* buf, int i, int k)
     return uniti;
 }
 
-category* get_category(FILE* file)
+static category* get_category(FILE* file)
 {
     category* arr_categors = calloc(1, sizeof(category));
     if (arr_categors == NULL) {
