@@ -11,7 +11,7 @@ CTEST(time_test, s_in_ms)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -25,7 +25,7 @@ CTEST(time_test, ms_in_s)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.001;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -39,7 +39,7 @@ CTEST(time_test, ns_in_s)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 3.6e-5;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -53,7 +53,7 @@ CTEST(time_test, h_in_ns)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 3.6e+12;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -67,7 +67,7 @@ CTEST(time_test, w_in_mks)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 6.048e+11;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -81,7 +81,7 @@ CTEST(time_test, mks_in_w)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1e-8;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -95,7 +95,7 @@ CTEST(time_test, m_in_ns)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 6e+10;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -109,7 +109,7 @@ CTEST(time_test, ns_in_m)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1e-10;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -123,7 +123,7 @@ CTEST(time_test, d_in_w)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -137,7 +137,7 @@ CTEST(time_test, w_in_d)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 7;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -151,7 +151,7 @@ CTEST(time_test, ms_in_m)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1e-4;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -165,6 +165,6 @@ CTEST(time_test, m_in_ms)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 60000;
-    double result = convert_time(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }

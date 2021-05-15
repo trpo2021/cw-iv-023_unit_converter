@@ -25,23 +25,12 @@ int main()
     double factor_in;
     factor_in = get_factor(input_str, index, second_factor, arr_categors);
     double value = get_value(input_str);
-    switch (index) {
-    case 0:
+    if (index == 2) {
         printf("converted value = %lf\n",
-               convert_length(factor_from, factor_in, value));
-        break;
-    case 1:
+               convert_unit_speed(factor_from, factor_in, value));
+    } else {
         printf("converted value = %lf\n",
-               convert_weight(factor_from, factor_in, value));
-        break;
-    case 2:
-        printf("converted value = %lf\n",
-               convert_speed(factor_from, factor_in, value));
-        break;
-    case 3:
-        printf("converted value = %lf\n",
-               convert_time(factor_from, factor_in, value));
-        break;
+               convert_unit(factor_from, factor_in, value));
     }
     free_database(arr_categors, counter_line);
     return 0;
