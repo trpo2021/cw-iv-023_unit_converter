@@ -11,7 +11,7 @@ CTEST(convert_weight, g_in_kg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.01;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -25,7 +25,7 @@ CTEST(convert_weight, g_in_mkg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1e+7;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -39,7 +39,7 @@ CTEST(convert_weight, g_in_mg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -53,7 +53,7 @@ CTEST(convert_weight, g_in_q)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.0001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -67,7 +67,7 @@ CTEST(convert_weight, g_in_t)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -81,7 +81,7 @@ CTEST(convert_weight, kg_in_mkg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -95,7 +95,7 @@ CTEST(convert_weight, kg_in_mg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -109,7 +109,7 @@ CTEST(convert_weight, kg_in_g)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -123,7 +123,7 @@ CTEST(convert_weight, kg_in_q)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.1;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -137,7 +137,7 @@ CTEST(convert_weight, kg_in_t)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.01;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -151,7 +151,7 @@ CTEST(convert_weight, mkg_in_mg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.01;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -165,7 +165,7 @@ CTEST(convert_weight, mkg_in_g)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -179,7 +179,7 @@ CTEST(convert_weight, mkg_in_kg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00000001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -193,7 +193,7 @@ CTEST(convert_weight, mkg_in_q)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.0000000001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -207,7 +207,7 @@ CTEST(convert_weight, mkg_in_t)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00000000001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -221,7 +221,7 @@ CTEST(convert_weight, mg_in_mkg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -235,7 +235,7 @@ CTEST(convert_weight, mg_in_g)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.01;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -249,7 +249,7 @@ CTEST(convert_weight, mg_in_kg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -263,7 +263,7 @@ CTEST(convert_weight, mg_in_q)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.0000001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -277,7 +277,7 @@ CTEST(convert_weight, mg_in_t)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 0.00000001;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -291,7 +291,7 @@ CTEST(convert_weight, q_in_mkg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000000000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -305,7 +305,7 @@ CTEST(convert_weight, q_in_mg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -319,7 +319,7 @@ CTEST(convert_weight, q_in_g)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -333,7 +333,7 @@ CTEST(convert_weight, q_in_kg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -347,7 +347,7 @@ CTEST(convert_weight, q_in_t)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 1;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -361,7 +361,7 @@ CTEST(convert_weight, t_in_mkg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 100000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -375,7 +375,7 @@ CTEST(convert_weight, t_in_mg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -389,7 +389,7 @@ CTEST(convert_weight, t_in_g)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -403,7 +403,7 @@ CTEST(convert_weight, t_in_kg)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 10000;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
 
@@ -417,6 +417,6 @@ CTEST(convert_weight, t_in_q)
     double factor_in = get_factor(input_str, 0, 2, ar_cat);
     double value = get_value(input_str);
     double expect = 100;
-    double result = convert_length(factor_from, factor_in, value);
+    double result = convert_unit(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, TOLL);
 }
