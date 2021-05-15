@@ -13,7 +13,7 @@ int main()
         printf("EROR file empty\n");
         return 1;
     }
-    category** arr_categors = database_create(file, counter_line);
+    category* arr_categors = database_create(file, counter_line);
     fclose(file);
 
     char* input_str = NULL;

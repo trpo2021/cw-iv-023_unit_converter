@@ -10,7 +10,7 @@ double get_value(char input_str[])
     return value;
 }
 
-double get_factor(char* input_str, int index, int number, category** arr_cat)
+double get_factor(char* input_str, int index, int number, category* arr_cat)
 {
     int i = 0;
     if (number == 1) {
@@ -33,12 +33,12 @@ double get_factor(char* input_str, int index, int number, category** arr_cat)
     for (int t = 0; j < i; t++, j++) {
         str_tmp[t] = input_str[j];
     }
-    for (i = 0; i < arr_cat[index]->units_counter; i++) {
-        if (strcmp(str_tmp, arr_cat[index]->units[i].key) == 0) {
+    for (i = 0; i < arr_cat[index].units_counter; i++) {
+        if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
             break;
         }
     }
-    double unit_factor = arr_cat[index]->units[i].value;
+    double unit_factor = arr_cat[index].units[i].value;
     return unit_factor;
 }
 
@@ -50,7 +50,7 @@ static void tolower_str(char* str)
     }
 }
 
-int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
+int get_index_cat(char* input_str, category* arr_cat, int counter_cat)
 {
     int i = 0;
     char str_tmp[6];
@@ -60,8 +60,8 @@ int get_index_cat(char* input_str, category** arr_cat, int counter_cat)
     }
     tolower_str(str_tmp);
     for (i = 0; i < counter_cat; i++) {
-        tolower_str(arr_cat[i]->key);
-        if (strcmp(str_tmp, arr_cat[i]->key) == 0) {
+        tolower_str(arr_cat[i].key);
+        if (strcmp(str_tmp, arr_cat[i].key) == 0) {
             return i;
         }
     }
