@@ -20,6 +20,7 @@ typedef struct category {
 } category;
 
 category* database_create(FILE* file, int counter_line);
+void free_database(category* arr_categors, int line_counter);
 double get_value(char input_str[]);
 double get_factor(char* input_str, int index, int number, category* arr_cat);
 int get_index_cat(char* input_str, category* arr_cat, int counter_cat);

@@ -15,7 +15,6 @@ int main()
     }
     category* arr_categors = database_create(file, counter_line);
     fclose(file);
-
     char* input_str = NULL;
     input_str = calloc(SIZE_INPUT_STR, sizeof(char));
     fgets(input_str, SIZE_INPUT_STR, stdin);
@@ -51,5 +50,6 @@ int main()
                convert_time(factor_from, factor_in, value));
         break;
     }
+    free_database(arr_categors, counter_line);
     return 0;
 }

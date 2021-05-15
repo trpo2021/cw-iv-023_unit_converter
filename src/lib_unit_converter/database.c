@@ -106,3 +106,11 @@ int line_counter(FILE* file)
     rewind(file);
     return counter;
 }
+
+void free_database(category* arr_categors, int line_counter)
+{
+    for (int i = 0; i < line_counter; i++) {
+        free(arr_categors[i].units);
+    }
+    free(arr_categors);
+}
