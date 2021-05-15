@@ -1,6 +1,6 @@
 #include "unit_converter.h"
 
-void* get_word(int i, category* arr_categors, char* buf)
+static void* get_word(int i, category* arr_categors, char* buf)
 {
     if (i == 0) {
         return NULL;
@@ -15,7 +15,7 @@ void* get_word(int i, category* arr_categors, char* buf)
     return arr_categors->key;
 }
 
-unit* get_unit(char* buf, int i, int k)
+static unit* get_unit(char* buf, int i, int k)
 {
     if (k == 0) {
         return NULL;
@@ -46,13 +46,9 @@ unit* get_unit(char* buf, int i, int k)
     return uniti;
 }
 
-category* get_category(FILE* file)
+static int get_category(FILE* file, category* arr_categors)
 {
-    category* arr_categors = calloc(1, sizeof(category));
-    if (arr_categors == NULL) {
-        return NULL;
-    }
-    char* buf = calloc(SIZE_BUF, sizeof(char));
+    char buf[SIZE_BUF] = {0};
     fgets(buf, SIZE_BUF, file);
     int i = 0, tmp_i, k = 1;
     while (isalpha(buf[i]) != 0) {
@@ -60,7 +56,7 @@ category* get_category(FILE* file)
     }
     arr_categors->key = get_word(i, arr_categors, buf);
     if (arr_categors->key == NULL) {
-        return NULL;
+        return -1;
     }
 
     while (buf[i] != '(') {
@@ -76,18 +72,16 @@ category* get_category(FILE* file)
     arr_categors->units_counter = k;
     arr_categors->units = get_unit(buf, tmp_i, k);
     if (arr_categors->units == NULL) {
-        return NULL;
+        return -1;
     }
-    free(buf);
-    return arr_categors;
+    return 0;
 }
 
-category** database_create(FILE* file, int counter_line)
+category* database_create(FILE* file, int counter_line)
 {
-    category** arr_categors = calloc(counter_line, sizeof(category));
+    category* arr_categors = (category*)calloc(counter_line, sizeof(category));
     for (int i = 0; i < counter_line; i++) {
-        arr_categors[i] = get_category(file);
-        if (arr_categors[i] == NULL) {
+        if (get_category(file, &(arr_categors[i])) == -1) {
             printf("EROR: Category format №%d is not correct\n", (i + 1));
         }
     }
@@ -111,4 +105,12 @@ int line_counter(FILE* file)
     }
     rewind(file);
     return counter;
+}
+
+void free_database(category* arr_categors, int line_counter)
+{
+    for (int i = 0; i < line_counter; i++) {
+        free(arr_categors[i].units);
+    }
+    free(arr_categors);
 }
