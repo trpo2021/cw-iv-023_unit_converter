@@ -52,7 +52,7 @@ static category* get_category(FILE* file)
     if (arr_categors == NULL) {
         return NULL;
     }
-    char* buf = calloc(SIZE_BUF, sizeof(char));
+    char buf[SIZE_BUF] = {0};
     fgets(buf, SIZE_BUF, file);
     int i = 0, tmp_i, k = 1;
     while (isalpha(buf[i]) != 0) {
@@ -78,7 +78,6 @@ static category* get_category(FILE* file)
     if (arr_categors->units == NULL) {
         return NULL;
     }
-    free(buf);
     return arr_categors;
 }
 
