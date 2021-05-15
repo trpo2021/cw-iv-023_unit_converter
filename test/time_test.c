@@ -4,7 +4,7 @@
 CTEST(time_test, s_in_ms)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(s, ms, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -18,7 +18,7 @@ CTEST(time_test, s_in_ms)
 CTEST(time_test, ms_in_s)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(ms, s, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -32,7 +32,7 @@ CTEST(time_test, ms_in_s)
 CTEST(time_test, ns_in_s)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(ns, s, 36000)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -46,7 +46,7 @@ CTEST(time_test, ns_in_s)
 CTEST(time_test, h_in_ns)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(h, ns, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -60,7 +60,7 @@ CTEST(time_test, h_in_ns)
 CTEST(time_test, w_in_mks)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(w, mks, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -74,7 +74,7 @@ CTEST(time_test, w_in_mks)
 CTEST(time_test, mks_in_w)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(mks, w, 6048)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -88,7 +88,7 @@ CTEST(time_test, mks_in_w)
 CTEST(time_test, m_in_ns)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(m, ns, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -102,7 +102,7 @@ CTEST(time_test, m_in_ns)
 CTEST(time_test, ns_in_m)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(ns, m, 6)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -116,7 +116,7 @@ CTEST(time_test, ns_in_m)
 CTEST(time_test, d_in_w)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(d, w, 7)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -130,7 +130,7 @@ CTEST(time_test, d_in_w)
 CTEST(time_test, w_in_d)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(w, d, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -144,7 +144,7 @@ CTEST(time_test, w_in_d)
 CTEST(time_test, ms_in_m)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(ms, m, 6)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -158,7 +158,7 @@ CTEST(time_test, ms_in_m)
 CTEST(time_test, m_in_ms)
 {
     FILE* file = fopen("test/files_for_tests/data_time_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Time(m, ms, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);

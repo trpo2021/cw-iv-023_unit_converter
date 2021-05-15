@@ -4,7 +4,7 @@
 CTEST(speed_test, kms_in_ms_value_1)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, ms, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -19,7 +19,7 @@ CTEST(speed_test, kms_in_ms_value_1)
 CTEST(speed_test, kms_in_ms_some_value)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, ms, 32.13)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -34,7 +34,7 @@ CTEST(speed_test, kms_in_ms_some_value)
 CTEST(speed_test, kms_in_kmh_value_1)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, kmh, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -49,7 +49,7 @@ CTEST(speed_test, kms_in_kmh_value_1)
 CTEST(speed_test, kms_in_kmh_some_value)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, kmh, 264.091)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -64,7 +64,7 @@ CTEST(speed_test, kms_in_kmh_some_value)
 CTEST(speed_test, kms_in_dms_value_1)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, dms, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
@@ -80,7 +80,7 @@ CTEST(speed_test, kms_in_dms_value_1)
 CTEST(speed_test, kms_in_dmh_some_value)
 {
     FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category** ar_cat = database_create(file, 1);
+    category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Speed(kms, dms, 1)";
     double factor_from = get_factor(input_str, 0, 1, ar_cat);
