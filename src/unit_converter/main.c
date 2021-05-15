@@ -33,23 +33,12 @@ int main()
     double value = get_value(input_str);
     printf("value = %lf\n", value);
     // сделано для проверки и для того чтобы main компилировался, позже удалим.
-    switch (index) {
-    case 0:
+    if (index == 2) {
         printf("converted value = %lf\n",
-               convert_length(factor_from, factor_in, value));
-        break;
-    case 1:
+               convert_unit_speed(factor_from, factor_in, value));
+    } else {
         printf("converted value = %lf\n",
-               convert_weight(factor_from, factor_in, value));
-        break;
-    case 2:
-        printf("converted value = %lf\n",
-               convert_speed(factor_from, factor_in, value));
-        break;
-    case 3:
-        printf("converted value = %lf\n",
-               convert_time(factor_from, factor_in, value));
-        break;
+               convert_unit(factor_from, factor_in, value));
     }
     return 0;
 }
