@@ -1,37 +1,37 @@
 #include "unit_converter.h"
 
-static double get_value(char input_str[])
+static double get_value(char in_str[])
 {
     int i = 0;
-    while (isdigit(input_str[i]) == 0) {
+    while (isdigit(in_str[i]) == 0) {
         i++;
     }
-    double value = atof(&input_str[i]);
+    double value = atof(&in_str[i]);
     return value;
 }
 
-static double get_factor(char* input_str, int index, int number, category* arr_cat)
+static double get_factor(char* in_str, int index, int number, category* arr_cat)
 {
     int i = 0;
     if (number == 1) {
-        while (input_str[i] != '(') {
+        while (in_str[i] != '(') {
             i++;
         }
         i++;
     }
     if (number == 2) {
-        while (input_str[i] != ',') {
+        while (in_str[i] != ',') {
             i++;
         }
         i += 2;
     }
     int j = i;
-    while (isalpha(input_str[i]) != 0) {
+    while (isalpha(in_str[i]) != 0) {
         i++;
     }
     char* str_tmp = calloc(i - j, sizeof(char));
     for (int t = 0; j < i; t++, j++) {
-        str_tmp[t] = input_str[j];
+        str_tmp[t] = in_str[j];
     }
     for (i = 0; i < arr_cat[index].units_counter; i++) {
         if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
@@ -50,12 +50,12 @@ static void tolower_str(char* str)
     }
 }
 
-static int get_index_cat(char* input_str, category* arr_cat, int counter_cat)
+static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
 {
     int i = 0;
     char str_tmp[6];
-    while (input_str[i] != '(' && isalpha(input_str[i]) != 0) {
-        str_tmp[i] = input_str[i];
+    while (in_str[i] != '(' && isalpha(in_str[i]) != 0) {
+        str_tmp[i] = in_str[i];
         i++;
     }
     tolower_str(str_tmp);
@@ -68,14 +68,14 @@ static int get_index_cat(char* input_str, category* arr_cat, int counter_cat)
     return -1;
 }
 
-double convert(char* input_str, category* arr_cat, int counter_cat)
+double convert(char* in_str, category* arr_cat, int counter_cat)
 {
     int first_factor = 1, second_factor = 2;
     double factor_from, factor_in, value;
-    int index = get_index_cat(input_str, arr_cat, counter_cat);
-    factor_from = get_factor(input_str, index, first_factor, arr_cat);
-    factor_in = get_factor(input_str, index, second_factor, arr_cat);
-    value = get_value(input_str);
+    int index = get_index_cat(in_str, arr_cat, counter_cat);
+    factor_from = get_factor(in_str, index, first_factor, arr_cat);
+    factor_in = get_factor(in_str, index, second_factor, arr_cat);
+    value = get_value(in_str);
 
     if (strcmp(arr_cat[index].key, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;
