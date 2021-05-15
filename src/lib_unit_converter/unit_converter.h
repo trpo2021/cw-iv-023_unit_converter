@@ -8,12 +8,12 @@
 #define SIZE_INPUT_STR 256
 #define TOLL 1e-6
 
-typedef struct _unit {
+typedef struct unit {
     char* key;
     double value;
 } unit;
 
-typedef struct _category {
+typedef struct category {
     char* key;
     unit* units;
     int units_counter;
