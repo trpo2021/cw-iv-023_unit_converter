@@ -23,15 +23,9 @@ int main()
     int index = get_index_cat(input_str, arr_categors, counter_line);
     double factor_from;
     factor_from = get_factor(input_str, index, first_factor, arr_categors);
-    printf("factor_from = %.10lf\n", factor_from);
-    // сделано для проверки и для того чтобы main компилировался, позже удалим.
     double factor_in;
     factor_in = get_factor(input_str, index, second_factor, arr_categors);
-    printf("factor_in = %.10lf\n", factor_in);
-    // сделано для проверки и для того чтобы main компилировался, позже удалим.
     double value = get_value(input_str);
-    printf("value = %lf\n", value);
-    // сделано для проверки и для того чтобы main компилировался, позже удалим.
     switch (index) {
     case 0:
         printf("converted value = %lf\n",
