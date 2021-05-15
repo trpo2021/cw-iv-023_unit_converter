@@ -12,7 +12,7 @@ CTEST(speed_test, kms_in_ms_value_1)
     double value = get_value(input_str);
 
     double expect = 1000;
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
 
@@ -27,7 +27,7 @@ CTEST(speed_test, kms_in_ms_some_value)
     double value = get_value(input_str);
 
     double expect = 32130.000000;
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 3e-8);
 }
 
@@ -42,7 +42,7 @@ CTEST(speed_test, kms_in_kmh_value_1)
     double value = get_value(input_str);
 
     double expect = 3600;
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 3e-8);
 }
 
@@ -57,7 +57,7 @@ CTEST(speed_test, kms_in_kmh_some_value)
     double value = get_value(input_str);
 
     double expect = 950727.6;
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     ASSERT_DBL_NEAR_TOL(expect, result, 3e-8);
 }
 
@@ -72,7 +72,7 @@ CTEST(speed_test, kms_in_dms_value_1)
     double value = get_value(input_str);
     double expect = 10000;
 
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     free(ar_cat);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
@@ -88,7 +88,7 @@ CTEST(speed_test, kms_in_dmh_some_value)
     double value = get_value(input_str);
     double expect = 10000;
 
-    double result = convert_speed(factor_from, factor_in, value);
+    double result = convert_unit_speed(factor_from, factor_in, value);
     free(ar_cat);
     ASSERT_DBL_NEAR_TOL(expect, result, 0);
 }
