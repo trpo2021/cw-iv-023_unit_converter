@@ -15,8 +15,7 @@ int main()
     }
     category* arr_categors = database_create(file, counter_line);
     fclose(file);
-    char* input_str = NULL;
-    input_str = calloc(SIZE_INPUT_STR, sizeof(char));
+    char input_str[SIZE_INPUT_STR] = {0};
     fgets(input_str, SIZE_INPUT_STR, stdin);
 
     int first_factor = 1, second_factor = 2;
