@@ -5,6 +5,7 @@ APP_TEST_NAME = unit_converter_test
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -I thirdparty -MP -MMD
 GDB = -g -O0
+GTK = `pkg-config --cflags --libs gtk+-3.0`
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -34,13 +35,13 @@ all: $(APP_PATH)
 -include $(DEPS)
 
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	gcc $(CFLAGS) $(GDB) $(CPPFLAGS) $^ -o $@ -lm
+	gcc $(CFLAGS) $(GDB) $(CPPFLAGS) $^ -o $@ -lm $(GTK)
 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
-	gcc -c $(CFLAGS) $(GDB) $(CPPFLAGS) $< -o $@
+	gcc -c $(CFLAGS) $(GDB) $(CPPFLAGS) $< -o $@ $(GTK)
 
 test: $(TEST_PATH)
 
