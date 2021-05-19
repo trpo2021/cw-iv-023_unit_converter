@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gtk/gtk.h>
 #define SIZE_BUF 1024
 #define SIZE_INPUT_STR 256
 #define TOLL 1e-6

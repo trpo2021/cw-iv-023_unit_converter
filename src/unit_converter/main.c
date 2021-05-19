@@ -2,6 +2,7 @@
 
 int main(int argc, char** argv)
 {
+    GtkWidget *window, *box, *box_category, *box_convertion, *combobox_category;
     FILE* file;
     file = fopen("src/unit_converter/data.txt", "r");
     if (file == NULL) {
@@ -46,5 +47,28 @@ int main(int argc, char** argv)
     }
     printf("Converted value = %lf\n", converted_value);
     free_database(arr_categors, counter_line);
-    return 0;
+    return 0;*/
+
+    gtk_init(NULL, NULL);
+
+    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+    g_signal_connect (G_OBJECT (window), "destroy", G_CALLBACK (destroy_window), NULL);
+
+    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+    box_category = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    box_convertion = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(box_category), TRUE, TRUE, 5);
+    gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(box_convertion), TRUE, TRUE, 5);
+
+    combobox_category = gtk_combo_box_text_new();
+    combobox_init(combobox_category, arr_categors, counter_line);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_category), 0);
+    gtk_box_pack_end(GTK_BOX(box_category), combobox_category, TRUE, TRUE, 5);
+
+    gtk_container_add(GTK_CONTAINER(window), box);
+
+    gtk_widget_show_all(window);
+
+    gtk_main();
 }
