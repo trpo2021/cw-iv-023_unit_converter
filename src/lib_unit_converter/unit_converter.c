@@ -1,5 +1,23 @@
 #include "unit_converter.h"
 
+static char* get_name(char* str, int i)
+{
+    int j;
+    char* name = NULL;
+    if (isalpha(str[i]) != 0) {
+        j = i;
+        while (isalpha(str[i]) != 0) {
+            i++;
+        }
+        name = calloc(i - j, sizeof(char));
+        for (int index = 0; j < i; j++, index++) {
+            name[index] = str[j];
+        }
+        return name;
+    }
+    return NULL;
+}
+
 static double get_value(char in_str[])
 {
     int i = 0;
@@ -25,14 +43,7 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
         }
         i += 2;
     }
-    int j = i;
-    while (isalpha(in_str[i]) != 0) {
-        i++;
-    }
-    char* str_tmp = calloc(i - j, sizeof(char));
-    for (int t = 0; j < i; t++, j++) {
-        str_tmp[t] = in_str[j];
-    }
+    char* str_tmp = get_name(in_str, i);
     for (i = 0; i < arr_cat[index].units_counter; i++) {
         if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
             break;
@@ -53,11 +64,7 @@ static void tolower_str(char* str)
 static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
 {
     int i = 0;
-    char str_tmp[6];
-    while (in_str[i] != '(' && isalpha(in_str[i]) != 0) {
-        str_tmp[i] = in_str[i];
-        i++;
-    }
+    char* str_tmp = get_name(in_str, i);
     tolower_str(str_tmp);
     for (i = 0; i < counter_cat; i++) {
         tolower_str(arr_cat[i].key);
