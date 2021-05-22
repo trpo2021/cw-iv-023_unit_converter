@@ -1,5 +1,13 @@
 #include "unit_converter.h"
 
+static int skip_space(char* input_str, int i)
+{
+    while (input_str[i] == ' ') {
+        i++;
+    }
+    return i;
+}
+
 static char* get_name(char* str, int i)
 {
     int j;
@@ -43,6 +51,7 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
         }
         i += 2;
     }
+    i = skip_space(in_str, i);
     char* str_tmp = get_name(in_str, i);
     for (i = 0; i < arr_cat[index].units_counter; i++) {
         if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
@@ -64,6 +73,7 @@ static void tolower_str(char* str)
 static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
 {
     int i = 0;
+    i = skip_space(in_str, i);
     char* str_tmp = get_name(in_str, i);
     tolower_str(str_tmp);
     for (i = 0; i < counter_cat; i++) {
