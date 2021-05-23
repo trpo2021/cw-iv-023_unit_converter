@@ -17,13 +17,15 @@ int main(int argc, char** argv)
     fclose(file);
 
     char input_str[SIZE_INPUT_STR] = {0};
+    if((strcmp(argv[1], "--fast") == 0) || (strcmp(argv[1], "-f") == 0))
+    {
+    build_str_fast(input_str,argc, argv);
+    } else {
     printf("You want:");
     fgets(input_str, SIZE_INPUT_STR, stdin);
-    printf("converted value = %lf\n",
+    }
+    printf("Converted value = %lf\n",
            convert(input_str, arr_categors, counter_line));
     free_database(arr_categors, counter_line);
-    for(int i = 1; i < 3; i++){
-    printf("%d   %s\n", argc, argv[i]);
-    }
     return 0;
 }
