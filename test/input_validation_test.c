@@ -100,3 +100,43 @@ CTEST(input_validation, incorrect_number_entry)
     int expect = NO_CLOSING_PARENTHESIS;
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
+
+CTEST(input_validation, no_opening_parenthesis)
+{
+    char input_str[] = "Length g cm, 10)\n";
+    char* p = NULL;
+    int expect = NO_OPENING_PARENTHESIS;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
+
+CTEST(input_validation, no_closing_parenthesis)
+{
+    char input_str[] = "Length(g cm, 10\n";
+    char* p = NULL;
+    int expect = NO_CLOSING_PARENTHESIS;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
+
+CTEST(input_validation, unexpected_token)
+{
+    char input_str[] = "Length(g cm, 10) 12\n";
+    char* p = NULL;
+    int expect = UNEXPECTED_TOKEN;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
+
+CTEST(input_validation, extra_point)
+{
+    char input_str[] = "Length(g cm, 10.12.21)\n";
+    char* p = NULL;
+    int expect = EXPECTED_UNSIGNED_DOUBLE;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
+
+CTEST(input_validation, negative_value)
+{
+    char input_str[] = "Length(g cm, -10)\n";
+    char* p = NULL;
+    int expect = EXPECTED_UNSIGNED_DOUBLE;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
