@@ -39,3 +39,4 @@ void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* file);
 double convert(char* input_str, category* arr_cat, int counter_cat);
 char* build_str_fast(char* input_str, int argc, char** argv);
+int correct_input_str(char* input_str, char** correct_str);
