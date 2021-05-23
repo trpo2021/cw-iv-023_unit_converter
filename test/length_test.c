@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "ctest.h"
 #include "lib_unit_converter/unit_converter.h"
 
