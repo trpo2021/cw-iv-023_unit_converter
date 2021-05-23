@@ -41,10 +41,10 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
         i++;
     }
     if (number == 2) {
-        while (in_str[i] != ',') {
+        while (in_str[i] != ' ') {
             i++;
         }
-        i += 2;
+        i++;
     }
     char* str_tmp = get_name(in_str, i);
     if (str_tmp == NULL) {
