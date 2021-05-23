@@ -99,7 +99,9 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     factor_in = get_factor(in_str, index, second_factor, arr_cat);
     if (factor_from == UNIT_NOT_FOUND || factor_in == UNIT_NOT_FOUND) {
         return UNIT_NOT_FOUND;
-    } else if (factor_from == ERROR_EXTRACT_NAME || factor_in == ERROR_EXTRACT_NAME) {
+    } else if (
+            factor_from == ERROR_EXTRACT_NAME
+            || factor_in == ERROR_EXTRACT_NAME) {
         return ERROR_EXTRACT_NAME;
     }
     value = get_value(in_str);
