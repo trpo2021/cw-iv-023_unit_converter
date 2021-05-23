@@ -137,3 +137,48 @@ char* build_str_fast(char* input_str, int argc, char** argv)
     input_str[sum_of_symbols] = '\n';
     return input_str;
 }
+
+int help()
+{
+    char button;
+    char* page_str = calloc(256, sizeof(char));
+    FILE* page = fopen("help/greeting.txt", "r");
+    if (page == NULL) {
+        printf("Can`t open file\n");
+    }
+    fread(page_str, sizeof(char), 256, page);
+    fputs(page_str, stdout);
+    while (1) {
+        scanf("%c", &button);
+        switch (button) {
+        case 0x31:
+            page = fopen("help/page_1.txt", "r");
+            if (page == NULL) {
+                printf("Can`t open file\n");
+            }
+            fread(page_str, sizeof(char), 256, page);
+            fputs(page_str, stdout);
+
+            break;
+
+        case 0x32:
+            page = fopen("help/page_2.txt", "r");
+            if (page == NULL) {
+                printf("Can`t open file\n");
+            }
+            fread(page_str, sizeof(char), 256, page);
+            fputs(page_str, stdout);
+            break;
+
+        case 0x71:
+            return 0;
+            break;
+
+        case 0x51:
+            return 0;
+            break;
+        }
+    }
+    fclose(page);
+    return 0;
+}

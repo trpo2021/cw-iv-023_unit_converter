@@ -1,6 +1,6 @@
 #include "lib_unit_converter/unit_converter.h"
 
-int main()
+int main(int argc, char** argv)
 {
     FILE* file;
     file = fopen("src/unit_converter/data.txt", "r");
@@ -15,9 +15,22 @@ int main()
     }
     category* arr_categors = database_create(file, counter_line);
     fclose(file);
-
+    if (argc == 2) {
+        if (strcmp(argv[1], "--help") == 0) {
+            help();
+            while ((getchar()) != '\n')
+        ;
+        }
+    }
     char input_str[SIZE_INPUT_STR] = {0};
-    fgets(input_str, SIZE_INPUT_STR, stdin);
+    if (argc == 6) {
+        if ((strcmp(argv[1], "--fast") == 0) || (strcmp(argv[1], "-f") == 0)) {
+            build_str_fast(input_str, argc, argv);
+        }
+    } else {
+        printf("You want: ");
+        fgets(input_str, SIZE_INPUT_STR, stdin);
+    }
     char* correct_str = NULL;
     int code_error = correct_input_str(input_str, &correct_str);
     if (code_error < 0) {
