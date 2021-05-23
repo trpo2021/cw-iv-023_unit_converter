@@ -84,3 +84,28 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     }
     return -1;
 }
+
+char* build_str_fast(char* input_str, int argc, char** argv)
+{
+    int i = 2;
+    int sum_of_symbols = 0;
+    while (i < argc) {
+        strcat(input_str, argv[i]);
+        sum_of_symbols += strlen(argv[i]);
+        if ((i == 3) || (i == 4)) {
+            input_str[sum_of_symbols] = ' ';
+            sum_of_symbols++;
+        }
+        if (i == 2) {
+            input_str[sum_of_symbols] = '(';
+            sum_of_symbols++;
+        }
+        if (i == 5) {
+            input_str[sum_of_symbols] = ')';
+            sum_of_symbols++;
+        }
+        i++;
+    }
+    input_str[sum_of_symbols] = '\n';
+    return input_str;
+}
