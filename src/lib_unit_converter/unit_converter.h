@@ -23,3 +23,4 @@ category* database_create(FILE* file, int counter_line);
 void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* file);
 double convert(char* input_str, category* arr_cat, int counter_cat);
+char* build_str_fast(char* input_str, int argc, char** argv);
