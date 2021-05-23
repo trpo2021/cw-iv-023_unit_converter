@@ -153,3 +153,45 @@ int correct_input_str(char* input_str, char** correct_str)
     (*correct_str)[j] = ')';
     return 0;
 }
+
+void print_errors(int code_error)
+{
+    switch (code_error) {
+    case CATEGORY_NOT_FOUND:
+        printf("ERROR: category not found.\n");
+        break;
+    case UNIT_NOT_FOUND:
+        printf("ERROR: unit not found.\n");
+        break;
+    case VALUE_NOT_FOUND:
+        printf("ERROR: value not found.\n");
+        break;
+    case NO_OPENING_PARENTHESIS:
+        printf("ERROR: expected '(' or error in the category name.\n");
+        break;
+    case NO_CLOSING_PARENTHESIS:
+        printf("ERROR: expected ')' or in number entry have extra symbols .\n");
+        break;
+    case NO_SEPARATING_COMMA:
+        printf("ERROR: expected separating comma ','.\n");
+        break;
+    case EXPECTED_UNIT:
+        printf("ERROR: expected unit or separating space.\n");
+        break;
+    case EXPECTED_UNSIGNED_DOUBLE:
+        printf("ERROR: expected '<unsigned double>'.\n");
+        break;
+    case UNEXPECTED_TOKEN:
+        printf("Error: unexpected token.\n");
+        break;
+    case ERROR_EXTRACT_NAME:
+        printf("ERROR: couldn't extract category or unit name from input.\n");
+        break;
+    case ERROR_MEMORY_ALLOCATIONS:
+        printf("ERROR: couldn't allocation memory.\n");
+        break;
+    case EXPECTED_CATEGORY_NAME:
+        printf("ERROR: expected category name.\n");
+        break;
+    }
+}
