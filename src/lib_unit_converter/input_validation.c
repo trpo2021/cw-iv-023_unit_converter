@@ -43,26 +43,44 @@ static int check_value(char* input_str, int i, int* k)
     return i;
 }
 
-static int checking_str_errors(char* input_str)
+static int check_category(char* input_str, int i, int* k)
 {
-    int k = 0, i = 0;
-    i = skip_space(input_str, i);
-    for (; input_str[i] != '\n'; i++, k++) {
+    int check_parenthesis = 0;
+    for (; input_str[i] != '\n'; i++, (*k)++) {
         if (isalpha(input_str[i]) == 0) {
             i = skip_space(input_str, i);
             if (input_str[i] == '(') {
-                if (k == 0) {
+                if ((*k) == 0) {
                     return EXPECTED_CATEGORY_NAME;
                 }
-                k++;
+                (*k)++;
                 i++;
+                check_parenthesis = 1;
                 break;
-            } else if (k == 0) {
+            } else if ((*k) == 0) {
                 return EXPECTED_CATEGORY_NAME;
             } else {
                 return NO_OPENING_PARENTHESIS;
             }
         }
+    }
+    if ((*k) == 0) {
+        return EXPECTED_CATEGORY_NAME;
+    } else if (check_parenthesis == 0) {
+        return NO_OPENING_PARENTHESIS;
+    }
+    return i;
+}
+
+static int checking_str_errors(char* input_str)
+{
+    int k = 0, i = 0;
+    i = skip_space(input_str, i);
+    i = check_category(input_str, i, &k);
+    if (i == EXPECTED_CATEGORY_NAME) {
+        return EXPECTED_CATEGORY_NAME;
+    } else if (i == NO_OPENING_PARENTHESIS) {
+        return NO_OPENING_PARENTHESIS;
     }
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
