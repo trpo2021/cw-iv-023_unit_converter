@@ -19,7 +19,7 @@ int main(int argc, char** argv)
         if (strcmp(argv[1], "--help") == 0) {
             help();
             while ((getchar()) != '\n')
-        ;
+                ;
         }
     }
     char input_str[SIZE_INPUT_STR] = {0};
