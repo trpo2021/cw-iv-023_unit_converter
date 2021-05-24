@@ -1,5 +1,8 @@
 #include "lib_unit_converter/unit_converter.h"
 
+int unit_from_number = -1, unit_to_number = -1, category_number;
+double value = 0;
+
 void destroy_window(GtkWidget* window, gpointer data)
 {
     (void)data;
@@ -7,49 +10,103 @@ void destroy_window(GtkWidget* window, gpointer data)
     gtk_main_quit();
 }
 
-void categories_init(GtkWidget* combobox, category* arr_categors, int n)
+void categories_init(GtkWidget* combobox, category* arr_categories, int categories_n)
 {
     int i;
     
     gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combobox),"select category");
-    for (i = 0; i < n; i++) {
-        gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combobox), arr_categors[i].key);
+    for (i = 0; i < categories_n; i++) {
+        gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combobox), arr_categories[i].key);
     }
 }
 
-void units_init(GtkWidget* combobox_category, user_data *data)
+void units_select(GtkWidget* combobox_category, data *unit_data)
 {
-        gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(data->data_gtkwidget));
+    gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(unit_data->widget));
 
-    int active_category;
-    int i;
+    int i, active_category;
 
     active_category = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category));
 
     switch (active_category) {
         case 1:
-            for (i = 0; i < data->categories_data[active_category - 1].units_counter; i++){
-                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(data->data_gtkwidget), data->categories_data[active_category - 1].units[i].key);
+            for (i = 0; i < unit_data->arr_categories[active_category - 1].units_counter; i++){
+                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(unit_data->widget), unit_data->arr_categories[active_category - 1].units[i].key);
             }
-            gtk_combo_box_set_active(GTK_COMBO_BOX(data->data_gtkwidget), 0);
             break;
         case 2:
-            for (i = 0; i < data->categories_data[active_category - 1].units_counter; i++){
-                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(data->data_gtkwidget), data->categories_data[active_category - 1].units[i].key);
+            for (i = 0; i < unit_data->arr_categories[active_category - 1].units_counter; i++){
+                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(unit_data->widget), unit_data->arr_categories[active_category - 1].units[i].key);
             }
-            gtk_combo_box_set_active(GTK_COMBO_BOX(data->data_gtkwidget), 0);
             break;
         case 3:
-            for (i = 0; i < data->categories_data[active_category - 1].units_counter; i++){
-                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(data->data_gtkwidget), data->categories_data[active_category - 1].units[i].key);
+            for (i = 0; i < unit_data->arr_categories[active_category - 1].units_counter; i++){
+                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(unit_data->widget), unit_data->arr_categories[active_category - 1].units[i].key);
             }
-            gtk_combo_box_set_active(GTK_COMBO_BOX(data->data_gtkwidget), 0);
             break;
         case 4:
-            for (i = 0; i < data->categories_data[active_category - 1].units_counter; i++){
-                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(data->data_gtkwidget), data->categories_data[active_category - 1].units[i].key);
+            for (i = 0; i < unit_data->arr_categories[active_category - 1].units_counter; i++){
+                gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(unit_data->widget), unit_data->arr_categories[active_category - 1].units[i].key);
             }
-            gtk_combo_box_set_active(GTK_COMBO_BOX(data->data_gtkwidget), 0);
             break;
     }
+    gtk_combo_box_set_active(GTK_COMBO_BOX(unit_data->widget), 0);
+}
+
+
+void start_graphic(category *arr_categories, int categories_n)
+{
+    gtk_init(NULL, NULL);
+
+    GtkWidget *window;
+    GtkWidget *box, *box_category, *box_convertion, *box_result;
+    GtkWidget *combobox_category,*combobox_from, *combobox_to;
+    GtkWidget *entry;
+    GtkWidget *label;
+    GtkWidget *button;
+
+    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+    g_signal_connect (window, "destroy", G_CALLBACK (destroy_window), NULL);
+
+    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+    box_category = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    box_convertion = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    box_result = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+    gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(box_result), TRUE, TRUE, 5);
+    gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(box_convertion), TRUE, TRUE, 5);
+    gtk_box_pack_end(GTK_BOX(box), GTK_WIDGET(box_category), TRUE, TRUE, 5);
+
+    entry = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(box_convertion), entry, TRUE, TRUE, 5);
+
+    button = gtk_button_new_with_label("convert!!!");
+    gtk_box_pack_end(GTK_BOX(box_convertion), button, TRUE, TRUE, 5);
+
+    label = gtk_label_new("result");
+    gtk_box_pack_end(GTK_BOX(box_result), label, TRUE, TRUE, 5);
+
+    combobox_category = gtk_combo_box_text_new();
+    categories_init(combobox_category, arr_categories, categories_n);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_category), 0);
+    gtk_box_pack_end(GTK_BOX(box_category), combobox_category, TRUE, TRUE, 5);
+
+    data *unit_data_from = malloc(sizeof(*unit_data_from));
+    combobox_from = gtk_combo_box_text_new();
+    gtk_box_pack_end(GTK_BOX(box_convertion), combobox_from, TRUE, TRUE, 5);
+    unit_combobox_init(combobox_category, combobox_from, arr_categories, unit_data_from);
+    
+    data *unit_data_to = malloc(sizeof(*unit_data_to));
+    combobox_to = gtk_combo_box_text_new();
+    gtk_box_pack_end(GTK_BOX(box_convertion), combobox_to, TRUE, TRUE, 5);
+    unit_combobox_init(combobox_category, combobox_to, arr_categories, unit_data_to);
+
+    gtk_container_add(GTK_CONTAINER(window), box);
+
+    gtk_widget_show_all(window);
+
+    gtk_main();
+
+    free(unit_data_from);
+    free(unit_data_to);
 }

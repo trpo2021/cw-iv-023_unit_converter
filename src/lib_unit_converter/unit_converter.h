@@ -35,6 +35,11 @@ enum ERROR_CODE {
     EXPECTED_CATEGORY_NAME = -12
 };
 
+typedef struct data {
+    category *arr_categories;
+    GtkWidget *widget;
+} data;
+
 category* database_create(FILE* file, int counter_line);
 void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* file);
