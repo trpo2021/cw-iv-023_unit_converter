@@ -66,8 +66,7 @@ static int check_category(char* input_str, int i, int* k)
     }
     if ((*k) == 0) {
         return EXPECTED_CATEGORY_NAME;
-    }
-    else if (check_parenthesis == 0) {
+    } else if (check_parenthesis == 0) {
         return NO_OPENING_PARENTHESIS;
     }
     return i;
