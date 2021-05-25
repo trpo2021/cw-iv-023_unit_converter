@@ -1,9 +1,11 @@
 #pragma once
 
 #include <ctype.h>
+#include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define SIZE_BUF 1024
 #define SIZE_INPUT_STR 256
 #define TOLL 1e-6
@@ -34,6 +36,11 @@ enum ERROR_CODE {
     EXPECTED_CATEGORY_NAME = -12
 };
 
+typedef struct data {
+    category *arr_categories;
+    GtkWidget *widget;
+} data;
+
 category* database_create(FILE* file, int counter_line);
 void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* file);
@@ -42,3 +49,4 @@ char* build_str_fast(char* input_str, int argc, char** argv);
 int correct_input_str(char* input_str, char** correct_str);
 void print_errors(int code_error);
 int help();
+void start_graphic(category* arr_categors, int categories_n);
