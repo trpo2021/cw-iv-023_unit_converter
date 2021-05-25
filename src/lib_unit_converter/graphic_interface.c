@@ -71,11 +71,18 @@ void combobox_unit_to_get_active(GtkWidget *button, GtkWidget *combobox_to)
     unit_to_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
 }
 
-void get_all_values(GtkWidget *button, GtkWidget *combobox_category, GtkWidget *combobox_from, GtkWidget *combobox_to)
+void entry_get_value(GtkWidget *button, GtkWidget *entry)
+{
+    (void)button;
+    value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
+}
+
+void get_all_values(GtkWidget *button, GtkWidget *combobox_category, GtkWidget *combobox_from, GtkWidget *combobox_to, GtkWidget *entry)
 {
     g_signal_connect (button, "clicked", G_CALLBACK(combobox_category_get_active), combobox_category);
     g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_from_get_active), combobox_from);
     g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_to_get_active), combobox_to);
+    g_signal_connect (button, "clicked", G_CALLBACK(entry_get_value), entry);
 }
 
 
