@@ -59,9 +59,23 @@ void combobox_category_get_active(GtkWidget *button, GtkWidget *combobox_categor
     category_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1;
 }
 
-void get_all_values(GtkWidget *button, GtkWidget *combobox_category)
+void combobox_unit_from_get_active(GtkWidget *button, GtkWidget *combobox_from)
+{
+    (void)button;
+    unit_from_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_from));
+}
+
+void combobox_unit_to_get_active(GtkWidget *button, GtkWidget *combobox_to)
+{
+    (void)button;
+    unit_to_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
+}
+
+void get_all_values(GtkWidget *button, GtkWidget *combobox_category, GtkWidget *combobox_from, GtkWidget *combobox_to)
 {
     g_signal_connect (button, "clicked", G_CALLBACK(combobox_category_get_active), combobox_category);
+    g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_from_get_active), combobox_from);
+    g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_to_get_active), combobox_to);
 }
 
 
