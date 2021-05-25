@@ -44,38 +44,27 @@ void units_select(GtkWidget *combobox_category, category *arr_categories)
     }
 }
 
-void combobox_category_get_active(GtkWidget *button, gpointer active_category)
-{
-    (void)button;
-    *((int*)active_category) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1;
-    g_print("%d\n", *((int*)active_category));
-}
-
-void combobox_unit_from_get_active(GtkWidget *button, gpointer active_unit_from)
-{
-    (void)button;
-    *((int*)active_unit_from) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_from));
-    g_print("%d\n", *((int*)active_unit_from));
-}
-
-void combobox_unit_to_get_active(GtkWidget *button, gpointer active_unit_to)
-{
-    (void)button;
-    *((int*)active_unit_to) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
-    g_print("%d\n", *((int*)active_unit_to));
-}
-
-void entry_get_value(GtkWidget *button, gpointer value)
-{
-    (void)button;
-    *(double *)value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
-    g_print("%lf\n", *(double *)value);
-}
-
 double do_convert(category *arr_categories, int active_category, int active_unit_from, int active_unit_to, double value)
 {
     return (value * (arr_categories[active_category].units[active_unit_to].value /
         arr_categories[active_category].units[active_unit_from].value));
+}
+
+void calculate(GtkWidget *button, category *arr_categories)
+{
+    (void)button;
+    char str_result[17];
+    int active_category, active_unit_from, active_unit_to;
+    double value, result;
+
+    active_category = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category));
+    active_unit_from = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_from));
+    active_unit_to = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
+    value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
+
+    result = do_convert(arr_categories, active_category, active_unit_from, active_unit_to, value);
+    sprintf(str_result, "%lf", result);
+    gtk_label_set_text(GTK_LABEL(label), str_result);
 }
 
 void start_graphic(category *arr_categories, int categories_n)
@@ -116,6 +105,8 @@ void start_graphic(category *arr_categories, int categories_n)
     g_signal_connect(combobox_category, "changed", G_CALLBACK(units_select), arr_categories);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_from, TRUE, TRUE, 5);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_to, TRUE, TRUE, 5);
+
+    g_signal_connect(button, "clicked", G_CALLBACK(calculate), arr_categories);
 
     gtk_container_add(GTK_CONTAINER(window), box);
 
