@@ -53,6 +53,17 @@ void units_select(GtkWidget* combobox_category, data *unit_data)
     gtk_combo_box_set_active(GTK_COMBO_BOX(unit_data->widget), 0);
 }
 
+void combobox_category_get_active(GtkWidget *button, GtkWidget *combobox_category)
+{
+    (void)button;
+    category_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1;
+}
+
+void get_all_values(GtkWidget *button, GtkWidget *combobox_category)
+{
+    g_signal_connect (button, "clicked", G_CALLBACK(combobox_category_get_active), combobox_category);
+}
+
 
 void start_graphic(category *arr_categories, int categories_n)
 {
@@ -91,15 +102,19 @@ void start_graphic(category *arr_categories, int categories_n)
     gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_category), 0);
     gtk_box_pack_end(GTK_BOX(box_category), combobox_category, TRUE, TRUE, 5);
 
-    data *unit_data_from = malloc(sizeof(*unit_data_from));
+    data *unit_from_data = malloc(sizeof(*unit_from_data));
     combobox_from = gtk_combo_box_text_new();
+    unit_from_data->arr_categories = arr_categories;
+    unit_from_data->widget = combobox_from;
+    g_signal_connect(combobox_category, "changed", G_CALLBACK(units_select), unit_from_data);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_from, TRUE, TRUE, 5);
-    unit_combobox_init(combobox_category, combobox_from, arr_categories, unit_data_from);
     
-    data *unit_data_to = malloc(sizeof(*unit_data_to));
+    data *unit_to_data = malloc(sizeof(*unit_to_data));
     combobox_to = gtk_combo_box_text_new();
+    unit_to_data->arr_categories = arr_categories;
+    unit_to_data->widget = combobox_to;
+    g_signal_connect(combobox_category, "changed", G_CALLBACK(units_select), unit_to_data);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_to, TRUE, TRUE, 5);
-    unit_combobox_init(combobox_category, combobox_to, arr_categories, unit_data_to);
 
     gtk_container_add(GTK_CONTAINER(window), box);
 
@@ -107,6 +122,6 @@ void start_graphic(category *arr_categories, int categories_n)
 
     gtk_main();
 
-    free(unit_data_from);
-    free(unit_data_to);
+    free(unit_from_data);
+    free(unit_to_data);
 }
