@@ -37,8 +37,8 @@ enum ERROR_CODE {
 };
 
 typedef struct data {
-    category *arr_categories;
-    GtkWidget *widget;
+    category* arr_categories;
+    GtkWidget* widget;
 } data;
 
 category* database_create(FILE* file, int counter_line);

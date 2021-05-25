@@ -45,7 +45,7 @@ int main(int argc, char** argv)
         return 1;
     }
     printf("Converted value = %lf\n", converted_value);
-    
+
     start_graphic(arr_categors, counter_line);
 
     free_database(arr_categors, counter_line);
