@@ -32,13 +32,11 @@ void units_select(GtkWidget *combobox_category, category *arr_categories)
     active_category = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category));
 
     if (active_category != 0){
-        
         for (i = 0; i < arr_categories[active_category - 1].units_counter; i++){
             gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combobox_from), arr_categories[active_category - 1].units[i].key);
         }
         gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_from), 0);
 
-        
         for (i = 0; i < arr_categories[active_category - 1].units_counter; i++){
             gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combobox_to), arr_categories[active_category - 1].units[i].key);
         }
@@ -46,43 +44,39 @@ void units_select(GtkWidget *combobox_category, category *arr_categories)
     }
 }
 
-/*void combobox_category_get_active(GtkWidget *button, GtkWidget *combobox_category)
+void combobox_category_get_active(GtkWidget *button, gpointer active_category)
 {
     (void)button;
-    category_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1;
+    *((int*)active_category) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1;
+    g_print("%d\n", *((int*)active_category));
 }
 
-void combobox_unit_from_get_active(GtkWidget *button, GtkWidget *combobox_from)
+void combobox_unit_from_get_active(GtkWidget *button, gpointer active_unit_from)
 {
     (void)button;
-    unit_from_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_from));
+    *((int*)active_unit_from) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_from));
+    g_print("%d\n", *((int*)active_unit_from));
 }
 
-void combobox_unit_to_get_active(GtkWidget *button, GtkWidget *combobox_to)
+void combobox_unit_to_get_active(GtkWidget *button, gpointer active_unit_to)
 {
     (void)button;
-    unit_to_number = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
+    *((int*)active_unit_to) = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
+    g_print("%d\n", *((int*)active_unit_to));
 }
 
-void entry_get_value(GtkWidget *button, GtkWidget *entry)
+void entry_get_value(GtkWidget *button, gpointer value)
 {
     (void)button;
-    value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
+    *(double *)value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
+    g_print("%lf\n", *(double *)value);
 }
 
-void get_all_values()
+double do_convert(category *arr_categories, int active_category, int active_unit_from, int active_unit_to, double value)
 {
-    g_signal_connect (button, "clicked", G_CALLBACK(combobox_category_get_active), combobox_category);
-    g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_from_get_active), combobox_from);
-    g_signal_connect (button, "clicked", G_CALLBACK(combobox_unit_to_get_active), combobox_to);
-    g_signal_connect (button, "clicked", G_CALLBACK(entry_get_value), entry);
+    return (value * (arr_categories[active_category].units[active_unit_to].value /
+        arr_categories[active_category].units[active_unit_from].value));
 }
-
-void do_convert(category *arr_categories)
-{
-    result = (value * (arr_categories[category_number].units[unit_to_number].value /
-        arr_categories[category_number].units[unit_from_number].value));
-}*/
 
 void start_graphic(category *arr_categories, int categories_n)
 {
@@ -122,11 +116,6 @@ void start_graphic(category *arr_categories, int categories_n)
     g_signal_connect(combobox_category, "changed", G_CALLBACK(units_select), arr_categories);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_from, TRUE, TRUE, 5);
     gtk_box_pack_end(GTK_BOX(box_convertion), combobox_to, TRUE, TRUE, 5);
-
-    //get_all_values(button, combobox_category, combobox_from, combobox_to, entry);
-    //g_signal_connect(button, "clicked", G_CALLBACK(calculate), arr_categories);
-
-
 
     gtk_container_add(GTK_CONTAINER(window), box);
 
