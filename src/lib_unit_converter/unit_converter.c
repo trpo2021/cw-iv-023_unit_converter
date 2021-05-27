@@ -85,7 +85,7 @@ static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
     return CATEGORY_NOT_FOUND;
 }
 
-double convert(char* in_str, category* arr_cat, int counter_cat)
+double converting(char* in_str, category* arr_cat, int counter_cat)
 {
     int first_factor = 1, second_factor = 2;
     double factor_from, factor_in, value;
@@ -106,6 +106,16 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     }
     value = get_value(in_str);
 
+    return calculating(index, factor_from, factor_in, value, arr_cat);
+}
+
+double calculating(
+        int index,
+        double factor_from,
+        double factor_in,
+        double value,
+        category* arr_cat)
+{
     if (strcmp(arr_cat[index].key, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;
     } else {
