@@ -95,7 +95,7 @@ CTEST(input_validation, no_separating_space)
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
 
-CTEST(input_validation, incorrect_number_entry)
+CTEST(input_validation, letters_in_numbers)
 {
     char input_str[] = "Length(g cm, 1cm0)\n";
     char* p = NULL;
@@ -151,4 +151,12 @@ CTEST(input_validation, check_uppercase_units)
     char input_str[] = "length(M Cm, 10)\n";
     int expect = 1000;
     ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
+}
+
+CTEST(input_validation, incorrect_number_entry)
+{
+    char input_str[] = "Length(m cm, 01)\n";
+    int expect = INCORRECT_NUMBER_ENTRY;
+    char* p = NULL;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
