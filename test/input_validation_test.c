@@ -32,7 +32,7 @@ CTEST(input_validation, not_found_category)
     fclose(file);
     char input_str[] = "Lngt(m cm, 10)\n";
     int expect = CATEGORY_NOT_FOUND;
-    ASSERT_EQUAL(expect, convert(input_str, ar_cat, 1));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
 }
 
 CTEST(input_validation, not_found_unit)
@@ -42,7 +42,7 @@ CTEST(input_validation, not_found_unit)
     fclose(file);
     char input_str[] = "Length(g cm, 10)\n";
     int expect = UNIT_NOT_FOUND;
-    ASSERT_EQUAL(expect, convert(input_str, ar_cat, 1));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
 }
 
 CTEST(input_validation, expected_first_unit)
