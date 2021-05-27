@@ -27,6 +27,9 @@ static int check_value(char* input_str, int i, int* k)
     if (input_str[i] == '-') {
         return EXPECTED_UNSIGNED_DOUBLE;
     }
+    if (input_str[i] == '0') {
+        return INCORRECT_NUMBER_ENTRY;
+    }
     if (isdigit(input_str[i]) != 0) {
         while ((isdigit(input_str[i]) != 0) || (input_str[i] == '.')) {
             if ((input_str[i] == '.') && (check_point == 1)) {
@@ -107,6 +110,8 @@ static int checking_str_errors(char* input_str)
         return VALUE_NOT_FOUND;
     } else if (i == EXPECTED_UNSIGNED_DOUBLE) {
         return EXPECTED_UNSIGNED_DOUBLE;
+    } else if (i == INCORRECT_NUMBER_ENTRY) {
+        return INCORRECT_NUMBER_ENTRY;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ')') {
@@ -210,6 +215,9 @@ void print_errors(int code_error)
         break;
     case EXPECTED_CATEGORY_NAME:
         printf("ERROR: expected category name.\n");
+        break;
+    case INCORRECT_NUMBER_ENTRY:
+        printf("ERROR: incorrect number entry.\n");
         break;
     }
 }
