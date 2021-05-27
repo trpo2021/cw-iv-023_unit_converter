@@ -17,12 +17,14 @@ CTEST(input_validation, no_space)
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
 
-CTEST(input_validation, check_uppercase)
+CTEST(input_validation, check_uppercase_category)
 {
+    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    category* ar_cat = database_create(file, 1);
+    fclose(file);
     char input_str[] = "LENgTH(m cm, 10)\n";
-    int expect = 0;
-    char* p = NULL;
-    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+    int expect = 1000;
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
 }
 
 CTEST(input_validation, not_found_category)
@@ -139,4 +141,14 @@ CTEST(input_validation, negative_value)
     char* p = NULL;
     int expect = EXPECTED_UNSIGNED_DOUBLE;
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
+
+CTEST(input_validation, check_uppercase_units)
+{
+    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    category* ar_cat = database_create(file, 1);
+    fclose(file);
+    char input_str[] = "length(M Cm, 10)\n";
+    int expect = 1000;
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
 }
