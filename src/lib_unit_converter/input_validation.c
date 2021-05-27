@@ -181,43 +181,49 @@ void print_errors(int code_error)
 {
     switch (code_error) {
     case CATEGORY_NOT_FOUND:
-        printf("ERROR: category not found.\n");
+        printf("ОШИБКА: категория не найдена.\n");
         break;
     case UNIT_NOT_FOUND:
-        printf("ERROR: unit not found.\n");
+        printf("ОШИБКА: единица измерения не найдена.\n");
         break;
     case VALUE_NOT_FOUND:
-        printf("ERROR: value not found.\n");
+        printf("ОШИБКА: число для перевода не найдено.\n");
         break;
     case NO_OPENING_PARENTHESIS:
-        printf("ERROR: expected '(' or error in the category name.\n");
+        printf("ОШИБКА: ожидалось '(' после названия категории или ошибка в "
+               "названии категории.\n");
         break;
     case NO_CLOSING_PARENTHESIS:
-        printf("ERROR: expected ')' or in number entry have extra symbols .\n");
+        printf("ОШИБКА: ожидалось ')' в конце ввода или в числе есть лишние "
+               "символы.\n");
         break;
     case NO_SEPARATING_COMMA:
-        printf("ERROR: expected separating comma ','.\n");
+        printf("ОШИБКА: ожидалась разделительная запятая ',' между числом и "
+               "последней единицей измерения.\n");
         break;
     case EXPECTED_UNIT:
-        printf("ERROR: expected unit or separating space.\n");
+        printf("ОШИБКА: ожидалась единица измерения или разделительный пробел "
+               "между двумя единицами измерения.\n");
         break;
     case EXPECTED_UNSIGNED_DOUBLE:
-        printf("ERROR: expected '<unsigned double>'.\n");
+        printf("ОШИБКА: ожидалось '<unsigned double>' беззнаковое вещественное "
+               "число.\n");
         break;
     case UNEXPECTED_TOKEN:
-        printf("Error: unexpected token.\n");
+        printf("Ошибка: неожиданный символ после ')'.\n");
         break;
     case ERROR_EXTRACT_NAME:
-        printf("ERROR: couldn't extract category or unit name from input.\n");
+        printf("ОШИБКА: не удалось извлечь название категории или название "
+               "единицы измерения из ввода.\n");
         break;
     case ERROR_MEMORY_ALLOCATIONS:
-        printf("ERROR: couldn't allocation memory.\n");
+        printf("ОШИБКА: не удалось выделить память.\n");
         break;
     case EXPECTED_CATEGORY_NAME:
-        printf("ERROR: expected category name.\n");
+        printf("ОШИБКА: ожидалось название категории.\n");
         break;
     case INCORRECT_NUMBER_ENTRY:
-        printf("ERROR: incorrect number entry.\n");
+        printf("ОШИБКА: неправильный ввод числа.\n");
         break;
     }
 }
