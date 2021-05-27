@@ -1,5 +1,13 @@
 #include "unit_converter.h"
 
+static void tolower_str(char* str)
+{
+    int size = strlen(str);
+    for (int i = 0; i < size; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
 static char* get_name(char* str, int i)
 {
     int j;
@@ -50,6 +58,7 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
     if (str_tmp == NULL) {
         return ERROR_EXTRACT_NAME;
     }
+    tolower_str(str_tmp);
     for (i = 0; i < arr_cat[index].units_counter; i++) {
         if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
             double unit_factor = arr_cat[index].units[i].value;
@@ -58,14 +67,6 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
         }
     }
     return UNIT_NOT_FOUND;
-}
-
-static void tolower_str(char* str)
-{
-    int size = strlen(str);
-    for (int i = 0; i < size; i++) {
-        str[i] = tolower(str[i]);
-    }
 }
 
 static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
@@ -85,7 +86,7 @@ static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
     return CATEGORY_NOT_FOUND;
 }
 
-double convert(char* in_str, category* arr_cat, int counter_cat)
+double converting(char* in_str, category* arr_cat, int counter_cat)
 {
     int first_factor = 1, second_factor = 2;
     double factor_from, factor_in, value;
@@ -106,6 +107,16 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     }
     value = get_value(in_str);
 
+    return calculating(index, factor_from, factor_in, value, arr_cat);
+}
+
+double calculating(
+        int index,
+        double factor_from,
+        double factor_in,
+        double value,
+        category* arr_cat)
+{
     if (strcmp(arr_cat[index].key, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;
     } else {

@@ -38,7 +38,8 @@ int main(int argc, char** argv)
         free_database(arr_categors, counter_line);
         return 1;
     }
-    double converted_value = convert(correct_str, arr_categors, counter_line);
+    double converted_value
+            = converting(correct_str, arr_categors, counter_line);
     if (converted_value < 0) {
         print_errors(converted_value);
         free_database(arr_categors, counter_line);
@@ -46,8 +47,8 @@ int main(int argc, char** argv)
     }
     printf("Converted value = %lf\n", converted_value);
 
-    start_graphic(arr_categors, counter_line);
-
+    // start_graphic(arr_categors, counter_line);
+    // Добавил в комменты т.к. нету пока что ключа для неё.
     free_database(arr_categors, counter_line);
     return 0;
 }
