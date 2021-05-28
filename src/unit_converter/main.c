@@ -15,14 +15,19 @@ int main(int argc, char** argv)
     }
     category* arr_categors = database_create(file, counter_line);
     fclose(file);
+    char input_str[SIZE_INPUT_STR] = {0};
     if (argc == 2) {
         if (strcmp(argv[1], "--help") == 0) {
             help();
             while ((getchar()) != '\n')
                 ;
         }
+        if (strcmp(argv[1], "-g") == 0) {
+            start_graphic(arr_categors, counter_line);
+            free_database(arr_categors, counter_line);
+            return 0;
+        }
     }
-    char input_str[SIZE_INPUT_STR] = {0};
     if (argc == 6) {
         if ((strcmp(argv[1], "--fast") == 0) || (strcmp(argv[1], "-f") == 0)) {
             build_str_fast(input_str, argc, argv);
@@ -46,9 +51,6 @@ int main(int argc, char** argv)
         return 1;
     }
     printf("Converted value = %lf\n", converted_value);
-
-    // start_graphic(arr_categors, counter_line);
-    // Добавил в комменты т.к. нету пока что ключа для неё.
     free_database(arr_categors, counter_line);
     return 0;
 }
