@@ -160,3 +160,21 @@ CTEST(input_validation, incorrect_number_entry)
     char* p = NULL;
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
+
+CTEST(input_validation, check_slash)
+{
+    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    category* ar_cat = database_create(file, 1);
+    fclose(file);
+    char input_str[] = "speed(km/s m/s, 10)\n";
+    int expect = 10000;
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
+}
+
+CTEST(input_validation, check_second_slash)
+{
+    char input_str[] = "speed(km//s m/s, 10)\n";
+    int expect = NO_SECOND_SLASH_EXPECTED;
+    char* p = NULL;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
