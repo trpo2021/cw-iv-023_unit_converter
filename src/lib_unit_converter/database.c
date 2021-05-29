@@ -30,7 +30,7 @@ static unit* get_unit(char* buf, int i, int k)
             i++;
         }
         j = i;
-        while (isalpha(buf[i]) != 0) {
+        while (isalpha(buf[i]) != 0 || buf[i] == '/') {
             i++;
         }
         uniti[p].key = calloc(i - j, sizeof(char));

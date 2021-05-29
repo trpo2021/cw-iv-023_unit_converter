@@ -10,8 +10,14 @@ static int skip_space(char* input_str, int i)
 
 static int check_unit(char* input_str, int i, int* k)
 {
+    short check_slash = 0;
     if (isalpha(input_str[i]) != 0) {
-        while (isalpha(input_str[i]) != 0) {
+        while (isalpha(input_str[i]) != 0 || (input_str[i] == '/')) {
+            if ((input_str[i] == '/') && (check_slash == 1)) {
+                return NO_SECOND_SLASH_EXPECTED;
+            } else if (input_str[i] == '/') {
+                check_slash = 1;
+            }
             i++;
             (*k)++;
         }
@@ -23,7 +29,7 @@ static int check_unit(char* input_str, int i, int* k)
 
 static int check_value(char* input_str, int i, int* k)
 {
-    short check_point = 0;
+    short check_dot = 0;
     if (input_str[i] == '-') {
         return EXPECTED_UNSIGNED_DOUBLE;
     }
@@ -32,10 +38,10 @@ static int check_value(char* input_str, int i, int* k)
     }
     if (isdigit(input_str[i]) != 0) {
         while ((isdigit(input_str[i]) != 0) || (input_str[i] == '.')) {
-            if ((input_str[i] == '.') && (check_point == 1)) {
+            if ((input_str[i] == '.') && (check_dot == 1)) {
                 return EXPECTED_UNSIGNED_DOUBLE;
-            } else {
-                check_point = 1;
+            } else if (input_str[i] == '.') {
+                check_dot = 1;
             }
             i++;
             (*k)++;
@@ -80,21 +86,19 @@ static int checking_str_errors(char* input_str)
     int k = 0, i = 0;
     i = skip_space(input_str, i);
     i = check_category(input_str, i, &k);
-    if (i == EXPECTED_CATEGORY_NAME) {
-        return EXPECTED_CATEGORY_NAME;
-    } else if (i == NO_OPENING_PARENTHESIS) {
-        return NO_OPENING_PARENTHESIS;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
-    if (i == EXPECTED_UNIT) {
-        return EXPECTED_UNIT;
+    if (i < 0) {
+        return i;
     }
     k++;
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
-    if (i == EXPECTED_UNIT) {
-        return EXPECTED_UNIT;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ',') {
@@ -106,12 +110,8 @@ static int checking_str_errors(char* input_str)
     k++;
     i = skip_space(input_str, i);
     i = check_value(input_str, i, &k);
-    if (i == VALUE_NOT_FOUND) {
-        return VALUE_NOT_FOUND;
-    } else if (i == EXPECTED_UNSIGNED_DOUBLE) {
-        return EXPECTED_UNSIGNED_DOUBLE;
-    } else if (i == INCORRECT_NUMBER_ENTRY) {
-        return INCORRECT_NUMBER_ENTRY;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ')') {
@@ -230,6 +230,10 @@ void print_errors(int code_error)
         break;
     case INCORRECT_KEY:
         printf("ОШИБКА: такого ключа не найдено.\n");
+        break;
+    case NO_SECOND_SLASH_EXPECTED:
+        printf("ОШИБКА: Не ожидался второй слэш '/' в название единицы "
+               "измерения.\n");
         break;
     }
 }

@@ -14,7 +14,7 @@ static char* get_name(char* str, int i)
     char* name = NULL;
     if (isalpha(str[i]) != 0) {
         j = i;
-        while (isalpha(str[i]) != 0) {
+        while (isalpha(str[i]) != 0 || str[i] == '/') {
             i++;
         }
         name = calloc(i - j, sizeof(char));
@@ -91,19 +91,17 @@ double converting(char* in_str, category* arr_cat, int counter_cat)
     int first_factor = 1, second_factor = 2;
     double factor_from, factor_in, value;
     int index = get_index_cat(in_str, arr_cat, counter_cat);
-    if (index == CATEGORY_NOT_FOUND) {
-        return CATEGORY_NOT_FOUND;
-    } else if (index == ERROR_EXTRACT_NAME) {
-        return ERROR_EXTRACT_NAME;
+    if (index < 0) {
+        return index;
     }
     factor_from = get_factor(in_str, index, first_factor, arr_cat);
     factor_in = get_factor(in_str, index, second_factor, arr_cat);
-    if (factor_from == UNIT_NOT_FOUND || factor_in == UNIT_NOT_FOUND) {
-        return UNIT_NOT_FOUND;
-    } else if (
-            factor_from == ERROR_EXTRACT_NAME
-            || factor_in == ERROR_EXTRACT_NAME) {
-        return ERROR_EXTRACT_NAME;
+    if (factor_from < 0) {
+        return factor_from;
+    } else if (factor_in < 0) {
+        return factor_in;
+    } else if (factor_from == factor_in) {
+        return IDENTICAL_UNITS;
     }
     value = get_value(in_str);
 
