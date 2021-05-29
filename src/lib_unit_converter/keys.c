@@ -89,7 +89,7 @@ int help()
 
 int check_keys_correct(char* key)
 {
-    const char key_array[][6] = {"-g", "--help", "--fast", "-f"};
+    const char key_array[][7] = {"-g", "--help", "--fast", "-f"};
     int num_of_keys = 4;
     for (int i = 0; i < num_of_keys; i++) {
         if (strcmp(key, key_array[i]) == 0) {
