@@ -10,8 +10,14 @@ static int skip_space(char* input_str, int i)
 
 static int check_unit(char* input_str, int i, int* k)
 {
+    short check_slash = 0;
     if (isalpha(input_str[i]) != 0) {
-        while (isalpha(input_str[i]) != 0) {
+        while (isalpha(input_str[i]) != 0 || (input_str[i] == '/')) {
+            if ((input_str[i] == '/') && (check_slash == 1)) {
+                return -1;
+            } else {
+                check_slash = 1;
+            }
             i++;
             (*k)++;
         }
