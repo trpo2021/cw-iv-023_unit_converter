@@ -38,7 +38,7 @@ enum ERROR_CODE {
     INCORRECT_NUM_OF_ARGC = -14
 };
 
-enum KEY_INDEX {GRAPHICS = 1, HELP = 2, FAST_1 = 3, FAST_2 = 4};
+enum KEY_INDEX { GRAPHICS = 1, HELP = 2, FAST_1 = 3, FAST_2 = 4 };
 
 typedef struct data {
     category* arr_categories;
