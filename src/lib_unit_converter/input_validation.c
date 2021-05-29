@@ -129,7 +129,7 @@ static int checking_str_errors(char* input_str)
 
 static int word_copy(char* input_str, char* correct_str, int i, int* j)
 {
-    while (isalpha(input_str[i]) != 0) {
+    while (isalpha(input_str[i]) != 0 || input_str[i] == '/') {
         correct_str[*j] = input_str[i];
         (*j)++;
         i++;
