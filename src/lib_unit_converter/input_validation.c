@@ -86,25 +86,19 @@ static int checking_str_errors(char* input_str)
     int k = 0, i = 0;
     i = skip_space(input_str, i);
     i = check_category(input_str, i, &k);
-    if (i == EXPECTED_CATEGORY_NAME) {
-        return EXPECTED_CATEGORY_NAME;
-    } else if (i == NO_OPENING_PARENTHESIS) {
-        return NO_OPENING_PARENTHESIS;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
-    if (i == EXPECTED_UNIT) {
-        return EXPECTED_UNIT;
-    } else if (i == NO_SECOND_SLASH_EXPECTED) {
-        return NO_SECOND_SLASH_EXPECTED;
+    if (i < 0) {
+        return i;
     }
     k++;
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
-    if (i == EXPECTED_UNIT) {
-        return EXPECTED_UNIT;
-    } else if (i == NO_SECOND_SLASH_EXPECTED) {
-        return NO_SECOND_SLASH_EXPECTED;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ',') {
@@ -116,12 +110,8 @@ static int checking_str_errors(char* input_str)
     k++;
     i = skip_space(input_str, i);
     i = check_value(input_str, i, &k);
-    if (i == VALUE_NOT_FOUND) {
-        return VALUE_NOT_FOUND;
-    } else if (i == EXPECTED_UNSIGNED_DOUBLE) {
-        return EXPECTED_UNSIGNED_DOUBLE;
-    } else if (i == INCORRECT_NUMBER_ENTRY) {
-        return INCORRECT_NUMBER_ENTRY;
+    if (i < 0) {
+        return i;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ')') {
