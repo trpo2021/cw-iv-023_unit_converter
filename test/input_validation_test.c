@@ -178,3 +178,13 @@ CTEST(input_validation, check_second_slash)
     char* p = NULL;
     ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
 }
+
+CTEST(input_validation, identical_units)
+{
+    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    category* ar_cat = database_create(file, 1);
+    fclose(file);
+    char input_str[] = "speed(km/s km/s, 10)\n";
+    int expect = IDENTICAL_UNITS;
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
+}
