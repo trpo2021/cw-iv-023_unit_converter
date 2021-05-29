@@ -100,6 +100,8 @@ double converting(char* in_str, category* arr_cat, int counter_cat)
         return factor_from;
     } else if (factor_in < 0) {
         return factor_in;
+    } else if (factor_from == factor_in) {
+        return IDENTICAL_UNITS;
     }
     value = get_value(in_str);
 
