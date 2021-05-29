@@ -10,27 +10,40 @@ int main(int argc, char** argv)
     }
     int counter_line = line_counter(file);
     if (counter_line == 0) {
-        printf("EROR file empty\n");
+        printf("ERROR file empty\n");
         return 1;
     }
     category* arr_categors = database_create(file, counter_line);
     fclose(file);
     char input_str[SIZE_INPUT_STR] = {0};
+    int value_of_check;
+    if (argc > 1) {
+        value_of_check = check_keys_correct(argv[1]);
+    } else {
+        value_of_check = 0;
+    }
+    if (value_of_check < 0) {
+        print_errors(value_of_check);
+        return 0;
+    }
     if (argc == 2) {
-        if (strcmp(argv[1], "--help") == 0) {
+        if (value_of_check == HELP) {
             help();
             while ((getchar()) != '\n')
                 ;
         }
-        if (strcmp(argv[1], "-g") == 0) {
+        if (value_of_check == GRAPHICS) {
             start_graphic(arr_categors, counter_line);
             free_database(arr_categors, counter_line);
             return 0;
         }
     }
-    if (argc == 6) {
-        if ((strcmp(argv[1], "--fast") == 0) || (strcmp(argv[1], "-f") == 0)) {
+    if (value_of_check == FAST_1 || value_of_check == FAST_2) {
+        if (argc == 6) {
             build_str_fast(input_str, argc, argv);
+        } else {
+            print_errors(INCORRECT_NUM_OF_ARGC);
+            return 0;
         }
     } else {
         printf("You want: ");

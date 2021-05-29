@@ -225,5 +225,11 @@ void print_errors(int code_error)
     case INCORRECT_NUMBER_ENTRY:
         printf("ОШИБКА: неправильный ввод числа.\n");
         break;
+    case INCORRECT_NUM_OF_ARGC:
+        printf("ОШИБКА: неправильно введены данные для перевода.\n");
+        break;
+    case INCORRECT_KEY:
+        printf("ОШИБКА: такого ключа не найдено.\n");
+        break;
     }
 }
