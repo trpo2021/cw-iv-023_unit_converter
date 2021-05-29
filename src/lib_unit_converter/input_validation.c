@@ -15,7 +15,7 @@ static int check_unit(char* input_str, int i, int* k)
         while (isalpha(input_str[i]) != 0 || (input_str[i] == '/')) {
             if ((input_str[i] == '/') && (check_slash == 1)) {
                 return NO_SECOND_SLASH_EXPECTED;
-            } else {
+            } else if (input_str[i] == '/') {
                 check_slash = 1;
             }
             i++;
@@ -29,7 +29,7 @@ static int check_unit(char* input_str, int i, int* k)
 
 static int check_value(char* input_str, int i, int* k)
 {
-    short check_point = 0;
+    short check_dot = 0;
     if (input_str[i] == '-') {
         return EXPECTED_UNSIGNED_DOUBLE;
     }
@@ -38,10 +38,10 @@ static int check_value(char* input_str, int i, int* k)
     }
     if (isdigit(input_str[i]) != 0) {
         while ((isdigit(input_str[i]) != 0) || (input_str[i] == '.')) {
-            if ((input_str[i] == '.') && (check_point == 1)) {
+            if ((input_str[i] == '.') && (check_dot == 1)) {
                 return EXPECTED_UNSIGNED_DOUBLE;
-            } else {
-                check_point = 1;
+            } else if (input_str[i] == '.') {
+                check_dot = 1;
             }
             i++;
             (*k)++;
@@ -95,12 +95,16 @@ static int checking_str_errors(char* input_str)
     i = check_unit(input_str, i, &k);
     if (i == EXPECTED_UNIT) {
         return EXPECTED_UNIT;
+    } else if (i == NO_SECOND_SLASH_EXPECTED) {
+        return NO_SECOND_SLASH_EXPECTED;
     }
     k++;
     i = skip_space(input_str, i);
     i = check_unit(input_str, i, &k);
     if (i == EXPECTED_UNIT) {
         return EXPECTED_UNIT;
+    } else if (i == NO_SECOND_SLASH_EXPECTED) {
+        return NO_SECOND_SLASH_EXPECTED;
     }
     i = skip_space(input_str, i);
     if (input_str[i] != ',') {
