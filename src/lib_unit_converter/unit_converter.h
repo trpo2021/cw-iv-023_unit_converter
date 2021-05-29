@@ -34,8 +34,11 @@ enum ERROR_CODE {
     ERROR_EXTRACT_NAME = -10,
     ERROR_MEMORY_ALLOCATIONS = -11,
     EXPECTED_CATEGORY_NAME = -12,
-    INCORRECT_NUMBER_ENTRY = -13
+    INCORRECT_NUMBER_ENTRY = -13,
+    INCORRECT_NUM_OF_ARGC = -14
 };
+
+enum KEY_INDEX { GRAPHICS = 1, HELP = 2, FAST_1 = 3, FAST_2 = 4 };
 
 typedef struct data {
     category* arr_categories;
@@ -57,3 +60,4 @@ int correct_input_str(char* input_str, char** correct_str);
 void print_errors(int code_error);
 int help();
 void start_graphic(category* arr_categors, int categories_n);
+int check_keys_correct(char* key);
