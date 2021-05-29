@@ -14,7 +14,7 @@ static int check_unit(char* input_str, int i, int* k)
     if (isalpha(input_str[i]) != 0) {
         while (isalpha(input_str[i]) != 0 || (input_str[i] == '/')) {
             if ((input_str[i] == '/') && (check_slash == 1)) {
-                return -1;
+                return NO_SECOND_SLASH_EXPECTED;
             } else {
                 check_slash = 1;
             }
@@ -236,6 +236,10 @@ void print_errors(int code_error)
         break;
     case INCORRECT_KEY:
         printf("ОШИБКА: такого ключа не найдено.\n");
+        break;
+    case NO_SECOND_SLASH_EXPECTED:
+        printf("ОШИБКА: Не ожидался второй слэш '/' в название единицы "
+               "измерения.\n");
         break;
     }
 }
