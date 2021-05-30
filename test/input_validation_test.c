@@ -20,31 +20,31 @@ CTEST(input_validation, no_space)
 CTEST(input_validation, check_uppercase_category)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "LENgTH(m cm, 10)\n";
     int expect = 1000;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, not_found_category)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "Lngt(m cm, 10)\n";
     int expect = CATEGORY_NOT_FOUND;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, not_found_unit)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "Length(g cm, 10)\n";
     int expect = UNIT_NOT_FOUND;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, expected_first_unit)
@@ -146,11 +146,11 @@ CTEST(input_validation, negative_value)
 CTEST(input_validation, check_uppercase_units)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "length(M Cm, 10)\n";
     int expect = 1000;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, incorrect_number_entry)
@@ -164,11 +164,11 @@ CTEST(input_validation, incorrect_number_entry)
 CTEST(input_validation, check_slash)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "speed(km/s m/s, 10)\n";
     int expect = 10000;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, check_second_slash)
@@ -182,19 +182,19 @@ CTEST(input_validation, check_second_slash)
 CTEST(input_validation, identical_units)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "speed(km/s km/s, 10)\n";
     int expect = IDENTICAL_UNITS;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
 
 CTEST(input_validation, check_double_value)
 {
     FILE* file = fopen("src/unit_converter/database.txt", "r");
-    category* ar_cat = database_create(file, 4);
+    category* ar_cat = database_create(file, 7);
     fclose(file);
     char input_str[] = "speed(km/h cm/h, 0.48)\n";
     int expect = 48000;
-    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 4));
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 7));
 }
