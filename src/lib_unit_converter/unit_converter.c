@@ -87,7 +87,7 @@ static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
     return CATEGORY_NOT_FOUND;
 }
 
-double converting(char* in_str, category* arr_cat, int counter_cat)
+double convert(char* in_str, category* arr_cat, int counter_cat)
 {
     int first_factor = 1, second_factor = 2;
     double factor_from, factor_in, value;
@@ -106,10 +106,10 @@ double converting(char* in_str, category* arr_cat, int counter_cat)
     }
     value = get_value(in_str);
 
-    return calculating(index, factor_from, factor_in, value, arr_cat);
+    return calculat(index, factor_from, factor_in, value, arr_cat);
 }
 
-double calculating(
+double calculat(
         int index,
         double factor_from,
         double factor_in,

@@ -69,7 +69,7 @@ void calculate(GtkWidget* button, category* arr_categories)
     if (active_category == -1) {
         gtk_label_set_text(GTK_LABEL(label), "Select category!");
     } else {
-        result = calculating(
+        result = calculat(
                 active_category,
                 arr_categories[active_category].units[active_unit_from].factor,
                 arr_categories[active_category].units[active_unit_to].factor,

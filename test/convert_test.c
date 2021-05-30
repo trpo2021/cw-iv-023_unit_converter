@@ -13,8 +13,7 @@ CTEST(convert_test, lenght)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), TOLL);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), TOLL);
     }
     fclose(file_test);
 }
@@ -30,8 +29,7 @@ CTEST(convert_test, speed)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), TOLL);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), TOLL);
     }
     fclose(file_test);
 }
@@ -47,8 +45,7 @@ CTEST(convert_test, time)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), TOLL);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), TOLL);
     }
 }
 
@@ -63,8 +60,7 @@ CTEST(convert_test, volume)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), TOLL);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), TOLL);
     }
     fclose(file_test);
 }
@@ -80,8 +76,7 @@ CTEST(convert_test, weight)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), 1e-6);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), 1e-6);
     }
     fclose(file_test);
 }
@@ -97,7 +92,7 @@ CTEST(convert_test, datarate)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(data.expect, converting(data.input, arr_cat, 7), 0);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), 0);
     }
     fclose(file_test);
 }
@@ -113,8 +108,7 @@ CTEST(convert_test, datasize)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 7), 1e-6);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 7), 1e-6);
     }
     fclose(file_test);
 }
