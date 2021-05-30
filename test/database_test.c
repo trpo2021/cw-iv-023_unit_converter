@@ -19,7 +19,7 @@ CTEST(line_counter, empty_file)
     ASSERT_EQUAL(expect, real);
 }
 
-CTEST(database_create, check_words)
+CTEST(database_create, check_category_name)
 {
     FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
     category* real = database_create(file, 3);
@@ -28,41 +28,34 @@ CTEST(database_create, check_words)
     char expect_word_2[] = "Length";
     char expect_word_3[] = "Speed";
     ASSERT_NOT_NULL(real);
-    ASSERT_STR(expect_word_1, real[0].key);
-    ASSERT_STR(expect_word_2, real[1].key);
-    ASSERT_STR(expect_word_3, real[2].key);
+    ASSERT_STR(expect_word_1, real[0].name);
+    ASSERT_STR(expect_word_2, real[1].name);
+    ASSERT_STR(expect_word_3, real[2].name);
+    free_database(real, 3);
 }
 
-CTEST(database_create, check_unit_first)
+CTEST(database_create, check_units)
 {
     FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
     category* real = database_create(file, 3);
     fclose(file);
-    char expect_key_1[] = "mkg";
-    char expect_key_2[] = "mg";
+    char expect_name_1[] = "mkg";
+    char expect_name_2[] = "mg";
     double expect_value_1 = 0.000000001;
     double expect_value_2 = 0.000001;
 
     ASSERT_NOT_NULL(real);
-    ASSERT_STR(expect_key_1, real[0].units[0].key);
-    ASSERT_STR(expect_key_2, real[0].units[1].key);
-    ASSERT_DBL_NEAR_TOL(expect_value_1, real[0].units[0].value, 0);
-    ASSERT_DBL_NEAR_TOL(expect_value_2, real[0].units[1].value, 0);
+    ASSERT_STR(expect_name_1, real[0].units[0].name);
+    ASSERT_STR(expect_name_2, real[0].units[1].name);
+    ASSERT_DBL_NEAR_TOL(expect_value_1, real[0].units[0].factor, 0);
+    ASSERT_DBL_NEAR_TOL(expect_value_2, real[0].units[1].factor, 0);
+    free_database(real, 3);
 }
 
-CTEST(database_create, check_unit_last)
+CTEST(database_create, database_fail)
 {
-    FILE* file = fopen("test/files_for_tests/data_test.txt", "r");
-    category* real = database_create(file, 3);
+    FILE* file = fopen("test/files_for_tests/database_fail.txt", "r");
+    category* real = database_create(file, 1);
     fclose(file);
-    char expect_key_1[] = "kms";
-    char expect_key_2[] = "ms";
-    double expect_value_1 = 0.001;
-    double expect_value_2 = 1;
-
-    ASSERT_NOT_NULL(real);
-    ASSERT_STR(expect_key_1, real[2].units[0].key);
-    ASSERT_STR(expect_key_2, real[2].units[1].key);
-    ASSERT_DBL_NEAR_TOL(expect_value_1, real[2].units[0].value, 0);
-    ASSERT_DBL_NEAR_TOL(expect_value_2, real[2].units[1].value, 0);
+    ASSERT_NULL(real);
 }

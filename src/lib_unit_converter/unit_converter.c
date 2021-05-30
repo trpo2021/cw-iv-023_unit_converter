@@ -60,8 +60,8 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
     }
     tolower_str(str_tmp);
     for (i = 0; i < arr_cat[index].units_counter; i++) {
-        if (strcmp(str_tmp, arr_cat[index].units[i].key) == 0) {
-            double unit_factor = arr_cat[index].units[i].value;
+        if (strcmp(str_tmp, arr_cat[index].units[i].name) == 0) {
+            double unit_factor = arr_cat[index].units[i].factor;
             return unit_factor;
             break;
         }
@@ -78,8 +78,8 @@ static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
     }
     tolower_str(str_tmp);
     for (i = 0; i < counter_cat; i++) {
-        tolower_str(arr_cat[i].key);
-        if (strcmp(str_tmp, arr_cat[i].key) == 0) {
+        tolower_str(arr_cat[i].name);
+        if (strcmp(str_tmp, arr_cat[i].name) == 0) {
             return i;
         }
     }
@@ -115,7 +115,7 @@ double calculating(
         double value,
         category* arr_cat)
 {
-    if (strcmp(arr_cat[index].key, "speed") == 0) {
+    if (strcmp(arr_cat[index].name, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;
     } else {
         return value * (factor_from / factor_in);

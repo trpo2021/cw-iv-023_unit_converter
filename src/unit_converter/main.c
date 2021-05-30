@@ -2,19 +2,23 @@
 
 int main(int argc, char** argv)
 {
-    FILE* file;
-    file = fopen("src/unit_converter/data.txt", "r");
-    if (file == NULL) {
-        printf("ERROR cant open file\n");
+    FILE* database;
+    database = fopen("src/unit_converter/database.txt", "r");
+    if (database == NULL) {
+        printf("ERROR cant open database\n");
         return 1;
     }
-    int counter_line = line_counter(file);
+    int counter_line = line_counter(database);
     if (counter_line == 0) {
-        printf("ERROR file empty\n");
+        printf("ERROR database empty\n");
         return 1;
     }
-    category* arr_categors = database_create(file, counter_line);
-    fclose(file);
+    category* arr_categors = database_create(database, counter_line);
+    if (arr_categors == NULL) {
+        print_errors(ERROR_CREATING_DATABASE);
+        return -1;
+    }
+    fclose(database);
     char input_str[SIZE_INPUT_STR] = {0};
     int value_of_check;
     if (argc > 1) {

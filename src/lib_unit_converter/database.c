@@ -1,98 +1,104 @@
 #include "unit_converter.h"
 
-static void* get_word(int i, category* arr_categors, char* buf)
+static char* get_word(int i, category* arr_categors, char* database_buf)
 {
     if (i == 0) {
         return NULL;
     }
-    arr_categors->key = calloc(i, sizeof(char));
-    if (arr_categors->key == NULL) {
+    arr_categors->name = calloc(i, sizeof(char));
+    if (arr_categors->name == NULL) {
         return NULL;
     }
     for (int j = 0; j < i; j++) {
-        arr_categors->key[j] = buf[j];
+        arr_categors->name[j] = database_buf[j];
     }
-    return arr_categors->key;
+    return arr_categors->name;
 }
 
-static unit* get_unit(char* buf, int i, int k)
+static unit* get_unit(char* database_buf, int i, int k)
 {
     if (k == 0) {
         return NULL;
     }
-    unit* uniti = calloc(k, sizeof(unit));
-    if (uniti == NULL) {
+    unit* units = calloc(k, sizeof(unit));
+    if (units == NULL) {
         return NULL;
     }
     int j, p = 0, t;
     while (p < k) {
-        while (isalpha(buf[i]) == 0) {
+        while (isalpha(database_buf[i]) == 0) {
             i++;
         }
         j = i;
-        while (isalpha(buf[i]) != 0 || buf[i] == '/') {
+        while (isalpha(database_buf[i]) != 0 || database_buf[i] == '/') {
             i++;
         }
-        uniti[p].key = calloc(i - j, sizeof(char));
+        units[p].name = calloc(i - j, sizeof(char));
         for (t = 0; j < i; j++, t++) {
-            uniti[p].key[t] = buf[j];
+            units[p].name[t] = database_buf[j];
         }
-        while (isdigit(buf[i]) == 0) {
+        while (isdigit(database_buf[i]) == 0) {
             i++;
         }
-        uniti[p].value = atof(&buf[i]);
+        units[p].factor = atof(&database_buf[i]);
         p++;
     }
-    return uniti;
+    return units;
 }
 
-static int get_category(FILE* file, category* arr_categors)
+static int get_category(FILE* database, category* arr_categors)
 {
-    char buf[SIZE_BUF] = {0};
-    fgets(buf, SIZE_BUF, file);
+    char database_buf[SIZE_BUF] = {0};
+    fgets(database_buf, SIZE_BUF, database);
     int i = 0, tmp_i, k = 1;
-    while (isalpha(buf[i]) != 0) {
+    while (isalpha(database_buf[i]) != 0) {
         i++;
     }
-    arr_categors->key = get_word(i, arr_categors, buf);
-    if (arr_categors->key == NULL) {
-        return -1;
+    arr_categors->name = get_word(i, arr_categors, database_buf);
+    if (arr_categors->name == NULL) {
+        return ERROR_CREATING_DATABASE;
     }
 
-    while (buf[i] != '(') {
+    while (database_buf[i] != '(') {
+        if (database_buf[i] == '\n') {
+            return ERROR_CREATING_DATABASE;
+        }
         i++;
     }
     i++;
     tmp_i = i;
-    for (; buf[i] != ')'; i++) {
-        if (buf[i] == ',') {
+    for (; database_buf[i] != ')'; i++) {
+        if (database_buf[i] == ',') {
             k++;
+        }
+        if (database_buf[i] == '\n') {
+            return ERROR_CREATING_DATABASE;
         }
     }
     arr_categors->units_counter = k;
-    arr_categors->units = get_unit(buf, tmp_i, k);
+    arr_categors->units = get_unit(database_buf, tmp_i, k);
     if (arr_categors->units == NULL) {
-        return -1;
+        return ERROR_CREATING_DATABASE;
     }
     return 0;
 }
 
-category* database_create(FILE* file, int counter_line)
+category* database_create(FILE* database, int counter_line)
 {
     category* arr_categors = (category*)calloc(counter_line, sizeof(category));
     for (int i = 0; i < counter_line; i++) {
-        if (get_category(file, &(arr_categors[i])) == -1) {
-            printf("EROR: Category format №%d is not correct\n", (i + 1));
+        if (get_category(database, &(arr_categors[i])) < 0) {
+            return NULL;
         }
     }
     return arr_categors;
 }
 
-int line_counter(FILE* file)
+int line_counter(FILE* database)
 {
     int counter = 0;
     char ch, pre = EOF;
-    while ((ch = fgetc(file)) != EOF) {
+    while ((ch = fgetc(database)) != EOF) {
         pre = ch;
         if (ch == '\n') {
             counter++;
@@ -103,7 +109,7 @@ int line_counter(FILE* file)
     } else if (pre != '\n') {
         counter++;
     }
-    rewind(file);
+    rewind(database);
     return counter;
 }
 
