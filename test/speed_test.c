@@ -1,62 +1,18 @@
 #include "ctest.h"
 #include "lib_unit_converter/unit_converter.h"
+#include "read_test_data.h"
 
-CTEST(speed_test, kms_in_ms_value_1)
+CTEST(speed_test, all)
 {
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s m/s, 1)";
-    double expect = 1000;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
-}
+    FILE* file_categories = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    category* arr_cat = database_create(file_categories, 1);
+    fclose(file_categories);
 
-CTEST(speed_test, kms_in_ms_some_value)
-{
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s m/s, 32.13)";
-    double expect = 32130.000000;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
-}
+    FILE *file_test = fopen("test/files_for_tests/speed_test.txt", "r");
+    test_data data;
 
-CTEST(speed_test, kms_in_kmh_value_1)
-{
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s km/h, 1)";
-    double expect = 3600;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
-}
-
-CTEST(speed_test, kms_in_kmh_some_value)
-{
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s km/h, 264.091)";
-    double expect = 950727.6;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
-}
-
-CTEST(speed_test, kms_in_dms_value_1)
-{
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s dm/s, 1)";
-    double expect = 10000;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
-}
-
-CTEST(speed_test, kms_in_dmh_some_value)
-{
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
-    category* ar_cat = database_create(file, 1);
-    fclose(file);
-    char input_str[] = "Speed(km/s dm/s, 1)";
-    double expect = 10000;
-    ASSERT_DBL_NEAR_TOL(expect, converting(input_str, ar_cat, 1), TOLL);
+    while (!feof(file_test)) {
+        get_test_data(file_test, &data);
+        ASSERT_DBL_NEAR_TOL(data.expect, converting(data.input, arr_cat, 1), 1);
+    }
 }
