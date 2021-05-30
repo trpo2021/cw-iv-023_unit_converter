@@ -33,7 +33,7 @@ static int check_value(char* input_str, int i, int* k)
     if (input_str[i] == '-') {
         return EXPECTED_UNSIGNED_DOUBLE;
     }
-    if (input_str[i] == '0') {
+    if (input_str[i] == '0' && input_str[i + 1] != '.') {
         return INCORRECT_NUMBER_ENTRY;
     }
     if (isdigit(input_str[i]) != 0) {
