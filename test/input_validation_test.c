@@ -19,7 +19,7 @@ CTEST(input_validation, no_space)
 
 CTEST(input_validation, check_uppercase_category)
 {
-    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "LENgTH(m cm, 10)\n";
@@ -29,7 +29,7 @@ CTEST(input_validation, check_uppercase_category)
 
 CTEST(input_validation, not_found_category)
 {
-    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Lngt(m cm, 10)\n";
@@ -39,7 +39,7 @@ CTEST(input_validation, not_found_category)
 
 CTEST(input_validation, not_found_unit)
 {
-    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "Length(g cm, 10)\n";
@@ -145,7 +145,7 @@ CTEST(input_validation, negative_value)
 
 CTEST(input_validation, check_uppercase_units)
 {
-    FILE* file = fopen("test/files_for_tests/data_length_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "length(M Cm, 10)\n";
@@ -163,7 +163,7 @@ CTEST(input_validation, incorrect_number_entry)
 
 CTEST(input_validation, check_slash)
 {
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "speed(km/s m/s, 10)\n";
@@ -181,7 +181,7 @@ CTEST(input_validation, check_second_slash)
 
 CTEST(input_validation, identical_units)
 {
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "speed(km/s km/s, 10)\n";
@@ -191,7 +191,7 @@ CTEST(input_validation, identical_units)
 
 CTEST(input_validation, check_double_value)
 {
-    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    FILE* file = fopen("test/files_for_tests/convert_test_data.txt", "r");
     category* ar_cat = database_create(file, 1);
     fclose(file);
     char input_str[] = "speed(km/h cm/h, 0.48)\n";
