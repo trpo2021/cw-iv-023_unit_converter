@@ -81,7 +81,7 @@ static int check_category(char* input_str, int i, int* k)
     return i;
 }
 
-static int checking_str_errors(char* input_str)
+static int check_str_errors(char* input_str)
 {
     int k = 0, i = 0;
     i = skip_space(input_str, i);
@@ -139,7 +139,7 @@ static int word_copy(char* input_str, char* correct_str, int i, int* j)
 
 int correct_input_str(char* input_str, char** correct_str)
 {
-    int size_str = checking_str_errors(input_str);
+    int size_str = check_str_errors(input_str);
     if (size_str < 0) {
         return size_str;
     }
