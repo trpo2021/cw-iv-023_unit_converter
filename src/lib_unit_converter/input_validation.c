@@ -235,5 +235,8 @@ void print_errors(int code_error)
         printf("ОШИБКА: Не ожидался второй слэш '/' в название единицы "
                "измерения.\n");
         break;
+    case IDENTICAL_UNITS:
+        printf("ОШИБКА: одинаковые единицы измерения.\n");
+        break;
     }
 }
