@@ -1,1 +1,1 @@
-Speed = (km/s - 0.001, m/s - 1, km/h - 3.6, dm/s - 10, cm/s - 100 m/h - 3600, dm/h - 36000, cm/h - 360000)
+Speed = (km/s - 0.001, m/s - 1, km/h - 3.6, dm/s - 10, cm/s - 100, m/h - 3600, dm/h - 36000, cm/h - 360000)
