@@ -31,6 +31,7 @@ CTEST(database_create, check_category_name)
     ASSERT_STR(expect_word_1, real[0].name);
     ASSERT_STR(expect_word_2, real[1].name);
     ASSERT_STR(expect_word_3, real[2].name);
+    free_database(real, 3);
 }
 
 CTEST(database_create, check_units)
@@ -48,6 +49,7 @@ CTEST(database_create, check_units)
     ASSERT_STR(expect_name_2, real[0].units[1].name);
     ASSERT_DBL_NEAR_TOL(expect_value_1, real[0].units[0].factor, 0);
     ASSERT_DBL_NEAR_TOL(expect_value_2, real[0].units[1].factor, 0);
+    free_database(real, 3);
 }
 
 CTEST(database_create, database_fail)
