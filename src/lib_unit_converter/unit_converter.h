@@ -8,7 +8,7 @@
 
 #define SIZE_BUF 1024
 #define SIZE_INPUT_STR 256
-#define TOLL 1e-6
+#define TOLL 1e-03
 
 typedef struct unit {
     char* name;
