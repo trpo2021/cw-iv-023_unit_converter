@@ -60,6 +60,7 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
     }
     tolower_str(str_tmp);
     for (i = 0; i < arr_cat[index].units_counter; i++) {
+        tolower_str(arr_cat[index].units[i].name);
         if (strcmp(str_tmp, arr_cat[index].units[i].name) == 0) {
             double unit_factor = arr_cat[index].units[i].factor;
             return unit_factor;
