@@ -9,10 +9,10 @@ CTEST(length_test, all)
     fclose(file_categories);
 
     FILE *file_test = fopen("test/files_for_tests/lenght_test.txt", "r");
-    test_data d;
+    test_data data;
 
     while (!feof(file_test)) {
-        get_test_data(file_test, &d);
-        ASSERT_DBL_NEAR_TOL(d.expect, converting(d.input, arr_cat, 1), 1.6e-02);
+        get_test_data(file_test, &data);
+        ASSERT_DBL_NEAR_TOL(data.expect, converting(data.input, arr_cat, 1), 1.6e-02);
     }
 }
