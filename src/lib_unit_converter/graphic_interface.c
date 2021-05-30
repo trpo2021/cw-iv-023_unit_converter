@@ -77,7 +77,7 @@ void calculate(GtkWidget* button, category* arr_categories)
                 arr_categories);
         sprintf(str_result, "result: %lf", result);
         gtk_label_set_text(GTK_LABEL(label), str_result);
-        }
+    }
 }
 
 void start_graphic(category* arr_categories, int categories_n)

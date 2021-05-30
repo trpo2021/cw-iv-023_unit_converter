@@ -1,9 +1,9 @@
-#include "lib_unit_converter/unit_converter.h"
 #include "read_test_data.h"
+#include "lib_unit_converter/unit_converter.h"
 
 #define STR_LEN 256
 
-void get_test_data(FILE *file, test_data *d)
+void get_test_data(FILE* file, test_data* d)
 {
     int i, counter = 0;
 
@@ -15,7 +15,7 @@ void get_test_data(FILE *file, test_data *d)
     }
 
     d->input = calloc(counter + 1, sizeof(char));
-    for (i = 0; i <= counter; i++){
+    for (i = 0; i <= counter; i++) {
         d->input[i] = buf_str[i];
     }
 
