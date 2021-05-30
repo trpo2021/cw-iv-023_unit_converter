@@ -52,8 +52,8 @@ typedef struct data {
 category* database_create(FILE* database, int counter_line);
 void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* database);
-double converting(char* in_str, category* arr_cat, int counter_cat);
-double calculating(
+double convert(char* in_str, category* arr_cat, int counter_cat);
+double calculat(
         int index,
         double factor_from,
         double factor_in,
