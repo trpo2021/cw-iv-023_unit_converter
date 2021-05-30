@@ -238,5 +238,8 @@ void print_errors(int code_error)
     case IDENTICAL_UNITS:
         printf("ОШИБКА: одинаковые единицы измерения.\n");
         break;
+    case ERROR_CREATING_DATABASE:
+        printf("ОШИБКА: при создание базы данных.\n");
+        break;
     }
 }

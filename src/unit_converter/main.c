@@ -14,6 +14,10 @@ int main(int argc, char** argv)
         return 1;
     }
     category* arr_categors = database_create(database, counter_line);
+    if (arr_categors == NULL) {
+        print_errors(ERROR_CREATING_DATABASE);
+        return -1;
+    }
     fclose(database);
     char input_str[SIZE_INPUT_STR] = {0};
     int value_of_check;

@@ -1,6 +1,6 @@
 #include "unit_converter.h"
 
-static void* get_word(int i, category* arr_categors, char* database_buf)
+static char* get_word(int i, category* arr_categors, char* database_buf)
 {
     if (i == 0) {
         return NULL;
@@ -56,10 +56,13 @@ static int get_category(FILE* database, category* arr_categors)
     }
     arr_categors->name = get_word(i, arr_categors, database_buf);
     if (arr_categors->name == NULL) {
-        return -1;
+        return ERROR_CREATING_DATABASE;
     }
 
     while (database_buf[i] != '(') {
+        if (database_buf[i] == '\n') {
+            return ERROR_CREATING_DATABASE;
+        }
         i++;
     }
     i++;
@@ -68,11 +71,14 @@ static int get_category(FILE* database, category* arr_categors)
         if (database_buf[i] == ',') {
             k++;
         }
+        if (database_buf[i] == '\n') {
+            return ERROR_CREATING_DATABASE;
+        }
     }
     arr_categors->units_counter = k;
     arr_categors->units = get_unit(database_buf, tmp_i, k);
     if (arr_categors->units == NULL) {
-        return -1;
+        return ERROR_CREATING_DATABASE;
     }
     return 0;
 }
@@ -81,8 +87,8 @@ category* database_create(FILE* database, int counter_line)
 {
     category* arr_categors = (category*)calloc(counter_line, sizeof(category));
     for (int i = 0; i < counter_line; i++) {
-        if (get_category(database, &(arr_categors[i])) == -1) {
-            printf("EROR: Category format №%d is not correct\n", (i + 1));
+        if (get_category(database, &(arr_categors[i])) < 0) {
+            return NULL;
         }
     }
     return arr_categors;
