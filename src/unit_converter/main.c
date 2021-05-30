@@ -3,7 +3,7 @@
 int main(int argc, char** argv)
 {
     FILE* database;
-    database = fopen("src/unit_converter/data.txt", "r");
+    database = fopen("src/unit_converter/database.txt", "r");
     if (database == NULL) {
         printf("ERROR cant open database\n");
         return 1;
