@@ -11,12 +11,12 @@
 #define TOLL 1e-6
 
 typedef struct unit {
-    char* key;
-    double value;
+    char* name;
+    double factor;
 } unit;
 
 typedef struct category {
-    char* key;
+    char* name;
     unit* units;
     int units_counter;
 } category;
@@ -48,9 +48,9 @@ typedef struct data {
     GtkWidget* widget;
 } data;
 
-category* database_create(FILE* file, int counter_line);
+category* database_create(FILE* database, int counter_line);
 void free_database(category* arr_categors, int line_counter);
-int line_counter(FILE* file);
+int line_counter(FILE* database);
 double converting(char* in_str, category* arr_cat, int counter_cat);
 double calculating(
         int index,

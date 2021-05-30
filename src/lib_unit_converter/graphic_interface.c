@@ -20,7 +20,7 @@ void categories_init(category* arr_categories, int categories_n)
             GTK_COMBO_BOX_TEXT(combobox_category), "select category");
     for (i = 0; i < categories_n; i++) {
         gtk_combo_box_text_append_text(
-                GTK_COMBO_BOX_TEXT(combobox_category), arr_categories[i].key);
+                GTK_COMBO_BOX_TEXT(combobox_category), arr_categories[i].name);
     }
 }
 
@@ -39,7 +39,7 @@ void units_select(GtkWidget* combobox_category, category* arr_categories)
              i++) {
             gtk_combo_box_text_append_text(
                     GTK_COMBO_BOX_TEXT(combobox_from),
-                    arr_categories[active_category - 1].units[i].key);
+                    arr_categories[active_category - 1].units[i].name);
         }
         gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_from), 0);
 
@@ -47,7 +47,7 @@ void units_select(GtkWidget* combobox_category, category* arr_categories)
              i++) {
             gtk_combo_box_text_append_text(
                     GTK_COMBO_BOX_TEXT(combobox_to),
-                    arr_categories[active_category - 1].units[i].key);
+                    arr_categories[active_category - 1].units[i].name);
         }
         gtk_combo_box_set_active(GTK_COMBO_BOX(combobox_to), 0);
     }
@@ -61,10 +61,10 @@ double do_convert(
         double value)
 {
     return (value
-            * (arr_categories[active_category].units[active_unit_to].value
+            * (arr_categories[active_category].units[active_unit_to].factor
                / arr_categories[active_category]
                          .units[active_unit_from]
-                         .value));
+                         .factor));
 }
 
 void calculate(GtkWidget* button, category* arr_categories)
