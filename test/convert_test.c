@@ -4,8 +4,7 @@
 
 CTEST(convert_test, lenght)
 {
-    FILE* file_categories
-            = fopen("test/files_for_tests/convert_test_data.txt", "r");
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
     category* arr_cat = database_create(file_categories, 5);
     fclose(file_categories);
 
@@ -15,15 +14,14 @@ CTEST(convert_test, lenght)
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
         ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 1), TOLL);
+                data.expect, converting(data.input, arr_cat, 5), TOLL);
     }
     fclose(file_test);
 }
 
 CTEST(convert_test, speed)
 {
-    FILE* file_categories
-            = fopen("test/files_for_tests/convert_test_data.txt", "r");
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
     category* arr_cat = database_create(file_categories, 5);
     fclose(file_categories);
 
@@ -33,15 +31,14 @@ CTEST(convert_test, speed)
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
         ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 3), TOLL);
+                data.expect, converting(data.input, arr_cat, 5), TOLL);
     }
     fclose(file_test);
 }
 
 CTEST(convert_test, time)
 {
-    FILE* file_categories
-            = fopen("test/files_for_tests/convert_test_data.txt", "r");
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
     category* arr_cat = database_create(file_categories, 5);
     fclose(file_categories);
 
@@ -51,14 +48,13 @@ CTEST(convert_test, time)
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
         ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 4), TOLL);
+                data.expect, converting(data.input, arr_cat, 5), TOLL);
     }
 }
 
 CTEST(convert_test, volume)
 {
-    FILE* file_categories
-            = fopen("test/files_for_tests/convert_test_data.txt", "r");
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
     category* arr_cat = database_create(file_categories, 5);
     fclose(file_categories);
 
@@ -75,9 +71,8 @@ CTEST(convert_test, volume)
 
 CTEST(convert_test, weight)
 {
-    FILE* file_categories
-            = fopen("test/files_for_tests/convert_test_data.txt", "r");
-    category* arr_cat = database_create(file_categories, 4);
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
+    category* arr_cat = database_create(file_categories, 5);
     fclose(file_categories);
 
     FILE* file_test = fopen("test/files_for_tests/weight_test.txt", "r");
@@ -86,7 +81,7 @@ CTEST(convert_test, weight)
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
         ASSERT_DBL_NEAR_TOL(
-                data.expect, converting(data.input, arr_cat, 4), TOLL);
+                data.expect, converting(data.input, arr_cat, 5), TOLL);
     }
     fclose(file_test);
 }
