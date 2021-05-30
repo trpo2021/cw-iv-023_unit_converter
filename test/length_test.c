@@ -13,6 +13,6 @@ CTEST(length_test, all)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &d);
-        ASSERT_DBL_NEAR_TOL(d.expect, converting(d.input, arr_cat, 1), 0.001);
+        ASSERT_DBL_NEAR_TOL(d.expect, converting(d.input, arr_cat, 1), 1.6e-02);
     }
 }

@@ -1,7 +1,7 @@
 #include "lib_unit_converter/unit_converter.h"
 #include "read_test_data.h"
 
-#define STR_LEN 32
+#define STR_LEN 256
 
 void get_test_data(FILE *file, test_data *d)
 {
@@ -19,5 +19,5 @@ void get_test_data(FILE *file, test_data *d)
         d->input[i] = buf_str[i];
     }
 
-    d->expect = atof(&buf_str[counter + 3]); 
+    d->expect = atof(&buf_str[counter + 3]);
 }
