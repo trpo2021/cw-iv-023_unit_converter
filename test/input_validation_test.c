@@ -188,3 +188,13 @@ CTEST(input_validation, identical_units)
     int expect = IDENTICAL_UNITS;
     ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
 }
+
+CTEST(input_validation, check_double_value)
+{
+    FILE* file = fopen("test/files_for_tests/data_speed_test.txt", "r");
+    category* ar_cat = database_create(file, 1);
+    fclose(file);
+    char input_str[] = "speed(km/h cm/h, 0.48)\n";
+    int expect = 48000;
+    ASSERT_EQUAL(expect, converting(input_str, ar_cat, 1));
+}
