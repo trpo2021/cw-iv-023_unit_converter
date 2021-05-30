@@ -58,7 +58,7 @@ void calculate(GtkWidget* button, category* arr_categories)
     (void)button;
     char str_result[32];
     int active_category, active_unit_from, active_unit_to;
-    double value, result;
+    double value = 0, result;
 
     active_category
             = (gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_category)) - 1);
@@ -66,14 +66,18 @@ void calculate(GtkWidget* button, category* arr_categories)
     active_unit_to = gtk_combo_box_get_active(GTK_COMBO_BOX(combobox_to));
     value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 
-    result = calculating(
-            active_category,
-            arr_categories[active_category].units[active_unit_from].factor,
-            arr_categories[active_category].units[active_unit_to].factor,
-            value,
-            arr_categories);
-    sprintf(str_result, "result: %lf", result);
-    gtk_label_set_text(GTK_LABEL(label), str_result);
+    if (active_category == -1) {
+        gtk_label_set_text(GTK_LABEL(label), "Select category!");
+    } else {
+        result = calculating(
+                active_category,
+                arr_categories[active_category].units[active_unit_from].factor,
+                arr_categories[active_category].units[active_unit_to].factor,
+                value,
+                arr_categories);
+        sprintf(str_result, "result: %lf", result);
+        gtk_label_set_text(GTK_LABEL(label), str_result);
+        }
 }
 
 void start_graphic(category* arr_categories, int categories_n)
