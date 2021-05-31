@@ -25,7 +25,7 @@ char* build_str_fast(char* input_str, int argc, char** argv)
     return input_str;
 }
 
-#define MAX_SIZE_OF_FILE 1000
+#define MAX_SIZE_OF_FILE 1930
 int help()
 {
     char button;
