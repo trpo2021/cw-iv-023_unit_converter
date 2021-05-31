@@ -112,15 +112,11 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     }
     value = get_value(in_str);
 
-    return calculat(index, factor_from, factor_in, value, arr_cat);
+    return do_calculate(index, factor_from, factor_in, value, arr_cat);
 }
 
-double calculat(
-        int index,
-        double factor_from,
-        double factor_in,
-        double value,
-        category* arr_cat)
+double
+do_calculate(int index, double factor_from, double factor_in, double value, category* arr_cat)
 {
     if (strcmp(arr_cat[index].name, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;
