@@ -1,14 +1,18 @@
-#include "read_test_data.h"
 #include "lib_unit_converter/unit_converter.h"
+#include "read_test_data.h"
 
 #define STR_LEN 256
 
-void get_test_data(FILE* file, test_data* d)
+int get_test_data(FILE* file, test_data* d)
 {
     int i, counter = 0;
 
     char buf_str[STR_LEN];
-    fgets(buf_str, STR_LEN, file);
+    if (fgets(buf_str, STR_LEN, file) == NULL) {
+        d->expect = -1;
+        d->input = "Sped(km/s m/s, 1)";
+        return 0;
+    }
 
     while (buf_str[counter] != ')') {
         counter++;
@@ -20,4 +24,5 @@ void get_test_data(FILE* file, test_data* d)
     }
 
     d->expect = atof(&buf_str[counter + 3]);
+    return 0;
 }
