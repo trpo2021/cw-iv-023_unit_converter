@@ -1,5 +1,5 @@
 #include "unit_converter.h"
-
+//функция для приведения input_str к шаблонному виду
 char* build_str_fast(char* input_str, int argc, char** argv)
 {
     int i = 2;
@@ -24,7 +24,7 @@ char* build_str_fast(char* input_str, int argc, char** argv)
     input_str[sum_of_symbols] = '\n';
     return input_str;
 }
-
+//функия для вывода справки
 #define MAX_SIZE_OF_FILE 1930
 int help()
 {
@@ -86,7 +86,7 @@ int help()
     fclose(page);
     return 0;
 }
-
+//проверка на ошибки в аргументах командной строки
 int check_keys_correct(char* key)
 {
     const char key_array[][7] = {"-g", "--help", "--fast", "-f"};
