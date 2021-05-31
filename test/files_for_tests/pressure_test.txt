@@ -1,0 +1,6 @@
+Pressure(bar atm, 10) = 9.86923
+Pressure(bar pascal, 10) = 1e+06
+Pressure(atm bar, 10) = 1.01325e+01
+Pressure(atm pascal, 10) = 1.013250e+06
+Pressure(pascal bar, 10) = 1e-04
+Pressure(pascal atm, 10) = 9.8692e-05
