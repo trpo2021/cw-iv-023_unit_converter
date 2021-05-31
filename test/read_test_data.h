@@ -5,4 +5,4 @@ typedef struct test_data {
     double expect;
 } test_data;
 
-void get_test_data(FILE* file, test_data* d);
+int get_test_data(FILE* file, test_data* d);
