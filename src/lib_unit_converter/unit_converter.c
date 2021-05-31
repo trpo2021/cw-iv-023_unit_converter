@@ -35,6 +35,9 @@ static char* get_name(char* str, int i)
 static double get_value(char in_str[])
 {
     int i = 0;
+    while (in_str[i] != ',') {
+        i++;
+    }
     while (isdigit(in_str[i]) == 0) {
         i++;
     }
