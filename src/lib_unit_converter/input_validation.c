@@ -1,5 +1,6 @@
 #include "unit_converter.h"
 
+// Пропускает пробелы.
 static int skip_space(char* input_str, int i)
 {
     while (input_str[i] == ' ') {
@@ -8,6 +9,7 @@ static int skip_space(char* input_str, int i)
     return i;
 }
 
+// Проверяет на ошибки название единицы измерения.
 static int check_unit(char* input_str, int i, int* k)
 {
     short check_slash = 0;
@@ -35,6 +37,7 @@ static int check_unit(char* input_str, int i, int* k)
     return i;
 }
 
+// Проверяет на ошибки число.
 static int check_value(char* input_str, int i, int* k)
 {
     short check_dot = 0;
@@ -60,6 +63,7 @@ static int check_value(char* input_str, int i, int* k)
     return i;
 }
 
+// Проверяет на ошибки название категории.
 static int check_category(char* input_str, int i, int* k)
 {
     int check_parenthesis = 0;
@@ -89,6 +93,7 @@ static int check_category(char* input_str, int i, int* k)
     return i;
 }
 
+// Общая функция для проверки на ошибки в входной строке
 static int check_str_errors(char* input_str)
 {
     int k = 0, i = 0;
@@ -135,6 +140,7 @@ static int check_str_errors(char* input_str)
     return k;
 }
 
+// Копирует одно слово (либо название категории, либо unit)
 static int word_copy(char* input_str, char* correct_str, int i, int* j)
 {
     while (isalpha(input_str[i]) != 0 || input_str[i] == '/') {
@@ -153,6 +159,7 @@ static int word_copy(char* input_str, char* correct_str, int i, int* j)
     return i;
 }
 
+// Копирует введённую строку без лишних пробелов.
 int correct_input_str(char* input_str, char** correct_str)
 {
     int size_str = check_str_errors(input_str);
@@ -193,6 +200,7 @@ int correct_input_str(char* input_str, char** correct_str)
     return 0;
 }
 
+// Выводит сообщение об ошибке.
 void print_errors(int code_error)
 {
     switch (code_error) {

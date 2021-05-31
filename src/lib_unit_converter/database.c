@@ -1,5 +1,6 @@
 #include "unit_converter.h"
 
+// Считывает название категории.
 static char* get_word(int i, category* arr_categors, char* database_buf)
 {
     if (i == 0) {
@@ -15,6 +16,7 @@ static char* get_word(int i, category* arr_categors, char* database_buf)
     return arr_categors->name;
 }
 
+// Создает массив единиц измерения.
 static unit* get_unit(char* database_buf, int i, int k)
 {
     if (k == 0) {
@@ -49,6 +51,7 @@ static unit* get_unit(char* database_buf, int i, int k)
     return units;
 }
 
+// Заполняет одну категорию из массива категорий.
 static int get_category(FILE* database, category* arr_categors)
 {
     char database_buf[SIZE_BUF] = {0};
@@ -86,6 +89,7 @@ static int get_category(FILE* database, category* arr_categors)
     return 0;
 }
 
+// Создает массив категорий.
 category* database_create(FILE* database, int counter_line)
 {
     category* arr_categors = (category*)calloc(counter_line, sizeof(category));
@@ -97,6 +101,8 @@ category* database_create(FILE* database, int counter_line)
     return arr_categors;
 }
 
+
+// Считает количество категорий
 int line_counter(FILE* database)
 {
     int counter = 0;
@@ -116,6 +122,7 @@ int line_counter(FILE* database)
     return counter;
 }
 
+// Освобождает память под массив.
 void free_database(category* arr_categors, int line_counter)
 {
     for (int i = 0; i < line_counter; i++) {
