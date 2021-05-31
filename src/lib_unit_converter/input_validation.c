@@ -22,8 +22,8 @@ static int check_unit(char* input_str, int i, int* k)
             (*k)++;
         }
         if (input_str[i] == '^') {
-            if (isdigit(input_str[i + 1] == 0)) {
-                return EXPECTED_EXTENT_NUMBER;
+            if (isdigit(input_str[i + 1]) == 0) {
+                return EXPECTED_EXTENT;
             } else {
                 (*k) += 2;
                 i += 2;
@@ -262,7 +262,7 @@ void print_errors(int code_error)
     case ERROR_CREATING_DATABASE:
         printf("ОШИБКА: при создание базы данных.\n");
         break;
-    case EXPECTED_EXTENT_NUMBER:
+    case EXPECTED_EXTENT:
         printf("ОШИБКА: ожидалась степень числа после знака '^'.\n");
         break;
     }
