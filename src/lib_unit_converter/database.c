@@ -33,6 +33,9 @@ static unit* get_unit(char* database_buf, int i, int k)
         while (isalpha(database_buf[i]) != 0 || database_buf[i] == '/') {
             i++;
         }
+        if (database_buf[i] == '^' && isdigit(database_buf[i + 1]) != 0) {
+            i += 2;
+        }
         units[p].name = calloc(i - j, sizeof(char));
         for (t = 0; j < i; j++, t++) {
             units[p].name[t] = database_buf[j];
