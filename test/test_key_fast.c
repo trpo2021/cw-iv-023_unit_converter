@@ -4,8 +4,7 @@
 CTEST(build_str_fast, right_input)
 {
     char input_str[50] = {0};
-    char* argv[]
-            = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s,", "10"};
+    char* argv[] = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s,", "10"};
     int argc = 6;
     char expect[] = {"Speed(km/s m/s, 10)\n"};
     char* result = calloc(40, sizeof(char));
@@ -27,8 +26,7 @@ CTEST(build_str_fast, incorrect_input)
 CTEST(build_and_check, correct_input)
 {
     char input_str[50] = {0};
-    char* argv[]
-            = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s,", "10"};
+    char* argv[] = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s,", "10"};
     int argc = 6;
     char* result_str = calloc(40, sizeof(char));
     result_str = build_str_fast(input_str, argc, argv);
@@ -41,8 +39,7 @@ CTEST(build_and_check, correct_input)
 CTEST(build_and_check, incorrect_input)
 {
     char input_str[50] = {0};
-    char* argv[]
-            = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s", "10"};
+    char* argv[] = {"bin/unit_converter", "--fast", "Speed", "km/s", "m/s", "10"};
     int argc = 6;
     char* result_str = calloc(40, sizeof(char));
     result_str = build_str_fast(input_str, argc, argv);

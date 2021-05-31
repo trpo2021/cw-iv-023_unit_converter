@@ -1,5 +1,6 @@
 #include "unit_converter.h"
 
+// Переводит строку в нижний регистр.
 static void tolower_str(char* str)
 {
     int size = strlen(str);
@@ -8,6 +9,7 @@ static void tolower_str(char* str)
     }
 }
 
+// Копирует имя категории или единицы измерения и возвращает указатель на строку с названием.
 static char* get_name(char* str, int i)
 {
     int j;
@@ -32,6 +34,7 @@ static char* get_name(char* str, int i)
     return NULL;
 }
 
+// Достает число из входной строки
 static double get_value(char in_str[])
 {
     int i = 0;
@@ -45,6 +48,7 @@ static double get_value(char in_str[])
     return value;
 }
 
+// Достает нужный фактор.
 static double get_factor(char* in_str, int index, int number, category* arr_cat)
 {
     int i = 0;
@@ -76,6 +80,7 @@ static double get_factor(char* in_str, int index, int number, category* arr_cat)
     return UNIT_NOT_FOUND;
 }
 
+// Узнает индекс нужной категории в массиве категорий
 static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
 {
     int i = 0;
@@ -93,6 +98,7 @@ static int get_index_cat(char* in_str, category* arr_cat, int counter_cat)
     return CATEGORY_NOT_FOUND;
 }
 
+// Достает данные для перевода и вызывает функцию do_calculate
 double convert(char* in_str, category* arr_cat, int counter_cat)
 {
     int first_factor = 1, second_factor = 2;
@@ -112,15 +118,12 @@ double convert(char* in_str, category* arr_cat, int counter_cat)
     }
     value = get_value(in_str);
 
-    return calculat(index, factor_from, factor_in, value, arr_cat);
+    return do_calculate(index, factor_from, factor_in, value, arr_cat);
 }
 
-double calculat(
-        int index,
-        double factor_from,
-        double factor_in,
-        double value,
-        category* arr_cat)
+// Функция переводит по формуле
+double
+do_calculate(int index, double factor_from, double factor_in, double value, category* arr_cat)
 {
     if (strcmp(arr_cat[index].name, "speed") == 0) {
         return value * (1 / factor_from) * factor_in;

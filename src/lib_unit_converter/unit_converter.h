@@ -40,7 +40,7 @@ enum ERROR_CODE {
     NO_SECOND_SLASH_EXPECTED = -16,
     IDENTICAL_UNITS = -17,
     ERROR_CREATING_DATABASE = -18,
-    EXPECTED_EXTENT_NUMBER = -19
+    EXPECTED_EXTENT = -19
 };
 
 enum KEY_INDEX { GRAPHICS = 1, HELP = 2, FAST_1 = 3, FAST_2 = 4 };
@@ -54,12 +54,8 @@ category* database_create(FILE* database, int counter_line);
 void free_database(category* arr_categors, int line_counter);
 int line_counter(FILE* database);
 double convert(char* in_str, category* arr_cat, int counter_cat);
-double calculat(
-        int index,
-        double factor_from,
-        double factor_in,
-        double value,
-        category* arr_cat);
+double
+do_calculate(int index, double factor_from, double factor_in, double value, category* arr_cat);
 char* build_str_fast(char* input_str, int argc, char** argv);
 int correct_input_str(char* input_str, char** correct_str);
 void print_errors(int code_error);

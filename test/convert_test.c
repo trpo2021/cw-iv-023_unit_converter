@@ -124,8 +124,7 @@ CTEST(convert_test, frequency)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, convert(data.input, arr_cat, 9), 1e-06);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 9), 1e-06);
     }
     fclose(file_test);
 }
@@ -157,8 +156,7 @@ CTEST(convert_test, pressure)
 
     while (!feof(file_test)) {
         get_test_data(file_test, &data);
-        ASSERT_DBL_NEAR_TOL(
-                data.expect, convert(data.input, arr_cat, 10), 1e-05);
+        ASSERT_DBL_NEAR_TOL(data.expect, convert(data.input, arr_cat, 10), 1e-05);
     }
     fclose(file_test);
 }
