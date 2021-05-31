@@ -145,3 +145,20 @@ CTEST(convert_test, area)
     }
     fclose(file_test);
 }
+
+CTEST(convert_test, pressure)
+{
+    FILE* file_categories = fopen("src/unit_converter/database.txt", "r");
+    category* arr_cat = database_create(file_categories, 10);
+    fclose(file_categories);
+
+    FILE* file_test = fopen("test/files_for_tests/pressure_test.txt", "r");
+    test_data data;
+
+    while (!feof(file_test)) {
+        get_test_data(file_test, &data);
+        ASSERT_DBL_NEAR_TOL(
+                data.expect, convert(data.input, arr_cat, 10), 1e-05);
+    }
+    fclose(file_test);
+}
