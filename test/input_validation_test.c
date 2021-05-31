@@ -198,3 +198,11 @@ CTEST(input_validation, check_double_value)
     int expect = 48000;
     ASSERT_EQUAL(expect, convert(input_str, ar_cat, 7));
 }
+
+CTEST(input_validation, check_extent)
+{
+    char input_str[] = "volume(m^ cm^3, 1)\n";
+    int expect = EXPECTED_EXTENT;
+    char* p = NULL;
+    ASSERT_EQUAL(expect, correct_input_str(input_str, &p));
+}
