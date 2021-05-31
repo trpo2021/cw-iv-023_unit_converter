@@ -17,6 +17,9 @@ static char* get_name(char* str, int i)
         while (isalpha(str[i]) != 0 || str[i] == '/') {
             i++;
         }
+        if (str[i] == '^' && isdigit(str[i + 1]) != 0) {
+            i += 2;
+        }
         name = calloc(i - j, sizeof(char));
         if (name == NULL) {
             return NULL;

@@ -21,6 +21,14 @@ static int check_unit(char* input_str, int i, int* k)
             i++;
             (*k)++;
         }
+        if (input_str[i] == '^') {
+            if (isdigit(input_str[i + 1] == 0)) {
+                return EXPECTED_EXTENT_NUMBER;
+            } else {
+                (*k) += 2;
+                i += 2;
+            }
+        }
     } else {
         return EXPECTED_UNIT;
     }
@@ -134,6 +142,14 @@ static int word_copy(char* input_str, char* correct_str, int i, int* j)
         (*j)++;
         i++;
     }
+    if (input_str[i] == '^' && isdigit(input_str[i + 1]) != 0) {
+        correct_str[*j] = input_str[i];
+        (*j)++;
+        i++;
+        correct_str[*j] = input_str[i];
+        (*j)++;
+        i++;
+    }
     return i;
 }
 
@@ -190,23 +206,28 @@ void print_errors(int code_error)
         printf("ОШИБКА: число для перевода не найдено.\n");
         break;
     case NO_OPENING_PARENTHESIS:
-        printf("ОШИБКА: ожидалось '(' после названия категории или ошибка в "
+        printf("ОШИБКА: ожидалось '(' после названия категории или ошибка "
+               "в "
                "названии категории.\n");
         break;
     case NO_CLOSING_PARENTHESIS:
-        printf("ОШИБКА: ожидалось ')' в конце ввода или в числе есть лишние "
+        printf("ОШИБКА: ожидалось ')' в конце ввода или в числе есть "
+               "лишние "
                "символы.\n");
         break;
     case NO_SEPARATING_COMMA:
-        printf("ОШИБКА: ожидалась разделительная запятая ',' между числом и "
+        printf("ОШИБКА: ожидалась разделительная запятая ',' между числом "
+               "и "
                "последней единицей измерения.\n");
         break;
     case EXPECTED_UNIT:
-        printf("ОШИБКА: ожидалась единица измерения или разделительный пробел "
+        printf("ОШИБКА: ожидалась единица измерения или разделительный "
+               "пробел "
                "между двумя единицами измерения.\n");
         break;
     case EXPECTED_UNSIGNED_DOUBLE:
-        printf("ОШИБКА: ожидалось '<unsigned double>' беззнаковое вещественное "
+        printf("ОШИБКА: ожидалось '<unsigned double>' беззнаковое "
+               "вещественное "
                "число.\n");
         break;
     case UNEXPECTED_TOKEN:
@@ -240,6 +261,9 @@ void print_errors(int code_error)
         break;
     case ERROR_CREATING_DATABASE:
         printf("ОШИБКА: при создание базы данных.\n");
+        break;
+    case EXPECTED_EXTENT_NUMBER:
+        printf("ОШИБКА: ожидалась степень числа после знака '^'.\n");
         break;
     }
 }
