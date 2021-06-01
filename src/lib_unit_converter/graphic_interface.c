@@ -2,7 +2,7 @@
 
 static GtkWidget *combobox_category, *combobox_from, *combobox_to;
 static GtkWidget* entry;
-static GtkWidget* label;
+static GtkWidget* result_entry;
 static GtkWidget* button;
 
 static void destroy_window(GtkWidget* window, gpointer data)
@@ -62,7 +62,7 @@ static void calculate(GtkWidget* button, category* arr_categories)
     value = atof(gtk_entry_get_text(GTK_ENTRY(entry)));
 
     if (active_category == -1) {
-        gtk_label_set_text(GTK_LABEL(label), "Select category!");
+        gtk_entry_set_text(GTK_ENTRY(result_entry), "select category!");
     } else {
         result = do_calculate(
                 active_category,
@@ -71,11 +71,11 @@ static void calculate(GtkWidget* button, category* arr_categories)
                 value,
                 arr_categories);
         if ((result > 1e+05) || (result < 1e-05)) {
-            sprintf(str_result, "result: %e", result);
+            sprintf(str_result, "%e", result);
         } else {
-            sprintf(str_result, "result: %lf", result);
+            sprintf(str_result, "%lf", result);
         }
-        gtk_label_set_text(GTK_LABEL(label), str_result);
+        gtk_entry_set_text(GTK_ENTRY(result_entry), str_result);
     }
 }
 
@@ -85,8 +85,10 @@ void start_graphic(category* arr_categories, int categories_n)
 
     GtkWidget* window;
     GtkWidget *box, *box_category, *box_convertion, *box_result;
+    GtkWidget *label_result;
 
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title (GTK_WINDOW(window), "unit converter");
 
     g_signal_connect(window, "destroy", G_CALLBACK(destroy_window), NULL);
 
@@ -104,8 +106,12 @@ void start_graphic(category* arr_categories, int categories_n)
     button = gtk_button_new_with_label("convert!!!");
     gtk_box_pack_end(GTK_BOX(box_convertion), button, TRUE, TRUE, 5);
 
-    label = gtk_label_new("result");
-    gtk_box_pack_end(GTK_BOX(box_result), label, TRUE, TRUE, 5);
+    label_result = gtk_label_new("result: ");
+    gtk_box_pack_start(GTK_BOX(box_result), label_result, TRUE, TRUE, 5);
+
+
+    result_entry = gtk_entry_new();
+    gtk_box_pack_end(GTK_BOX(box_result), result_entry, TRUE, TRUE, 5);
 
     combobox_category = gtk_combo_box_text_new();
     categories_init(arr_categories, categories_n);
