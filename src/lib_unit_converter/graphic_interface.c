@@ -5,6 +5,7 @@ static GtkWidget* entry;
 static GtkWidget* result_entry;
 static GtkWidget* button;
 
+// terminates the program when the window is closed
 static void destroy_window(GtkWidget* window, gpointer data)
 {
     (void)data;
@@ -12,6 +13,7 @@ static void destroy_window(GtkWidget* window, gpointer data)
     gtk_main_quit();
 }
 
+// fills the drop-down list with a categories
 static void categories_init(category* arr_categories, int categories_n)
 {
     int i;
@@ -23,6 +25,7 @@ static void categories_init(category* arr_categories, int categories_n)
     }
 }
 
+// Fills in the drop-down lists according to the selected category
 static void units_select(GtkWidget* combobox_category, category* arr_categories)
 {
     gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(combobox_from));
@@ -49,6 +52,7 @@ static void units_select(GtkWidget* combobox_category, category* arr_categories)
     }
 }
 
+// Counts and output result
 static void calculate(GtkWidget* button, category* arr_categories)
 {
     (void)button;
@@ -79,6 +83,7 @@ static void calculate(GtkWidget* button, category* arr_categories)
     }
 }
 
+// Starts graphic interface
 void start_graphic(category* arr_categories, int categories_n)
 {
     gtk_init(NULL, NULL);
@@ -108,7 +113,6 @@ void start_graphic(category* arr_categories, int categories_n)
 
     label_result = gtk_label_new("result: ");
     gtk_box_pack_start(GTK_BOX(box_result), label_result, TRUE, TRUE, 5);
-
 
     result_entry = gtk_entry_new();
     gtk_box_pack_end(GTK_BOX(box_result), result_entry, TRUE, TRUE, 5);
