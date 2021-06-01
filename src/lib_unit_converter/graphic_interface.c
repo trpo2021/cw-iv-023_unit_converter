@@ -70,7 +70,11 @@ static void calculate(GtkWidget* button, category* arr_categories)
                 arr_categories[active_category].units[active_unit_to].factor,
                 value,
                 arr_categories);
-        sprintf(str_result, "result: %lf", result);
+        if ((result > 1e+05) || (result < 1e-05)) {
+            sprintf(str_result, "result: %e", result);
+        } else {
+            sprintf(str_result, "result: %lf", result);
+        }
         gtk_label_set_text(GTK_LABEL(label), str_result);
     }
 }
